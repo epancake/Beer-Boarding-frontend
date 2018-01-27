@@ -3,9 +3,8 @@ import QuestionCard from './questionCard.js'
 
 const BrowseList = (props) => {
   const questions = props.questions.questions
-  console.log(props.questions.questions)
      return questions.map((question) => {
-   return <QuestionCard key={question.id} question={question} />
+   return <QuestionCard key={question.id} question={question} solvers={props.solvers.solvers}/>
   })
 
 }

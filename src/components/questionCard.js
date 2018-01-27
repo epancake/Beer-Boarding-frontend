@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
+import Dropdown from 'react-dropdown'
+import 'react-dropdown/style.css'
+
 
 class QuestionCard extends Component {
 
-  constructor() {
-  super();
+  constructor(props) {
+  super(props);
 
   this.state = {
     submitModalIsOpen: false,
-    deleteModalIsOpen: false
+    deleteModalIsOpen: false,
+    solvers_here: []
   };
+
+  const names = () => {
+    return this.props.solvers.filter(
+      item => item.solver_name
+    )
+  }
+
+  console.log('this', this.props.solvers)
 
   this.openSubmitModal = this.openSubmitModal.bind(this);
   this.closeSubmitModal = this.closeSubmitModal.bind(this);
@@ -19,9 +31,17 @@ class QuestionCard extends Component {
 
   openSubmitModal() {
     this.setState({submitModalIsOpen: true});
+    this.setState({solvers_here: this.props.solvers.map(
+      item => item.solver_name)})
+        console.log('this.props.solvers', this.props.solvers)
   }
 
   closeSubmitModal() {
+    this.setState({submitModalIsOpen: false});
+    window.location.assign('http://localhost:3001')
+  }
+
+  SubmitSubmitModal() {
     this.setState({submitModalIsOpen: false});
     window.location.assign('http://localhost:3001')
   }
@@ -43,6 +63,8 @@ class QuestionCard extends Component {
     this.onDelete(this.props.question.id, 'http://localhost:3000/questions');
     window.location.assign('http://localhost:3001')
   }
+
+
 
   render() {
     return (
@@ -73,11 +95,11 @@ class QuestionCard extends Component {
           contentLabel="Example Modal"
         >
         <h2 ref={subtitle => this.subtitle = subtitle}>What a champion!</h2>
-        <div>What's your full name?</div>
         <form>
-          <input type='text'/>
+          <Dropdown options={this.state.solvers_here} onChange={this._onSelect} placeholder="Select an option" />
         </form>
-        <button onClick={this.closeSubmitModal}>Submit</button>
+        <button onClick={this.SubmitSubmitModal}>Submit</button>
+        <button onClick={this.closeSubmitModal}>Cancel</button>
         </Modal>
 
         <Modal
