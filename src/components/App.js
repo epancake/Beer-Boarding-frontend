@@ -7,6 +7,9 @@ import BrowseList from './Browselist.js'
 import RandomQ from './Randomq.js'
 import Form from './Form.js'
 
+var baseUrl = 'http://localhost:3000'
+var homeUrl = 'http://localhost:3001'
+
 class App extends Component {
   state = {
     questions: [],
@@ -16,29 +19,21 @@ class App extends Component {
 
   componentDidMount() {
     Modal.setAppElement('.App');
-    fetch('http://localhost:3000/questions')
+    fetch(baseUrl)
       .then(response => response.json())
       .then(data => {
-        this.setState({questions: data.questions});
-        console.log('questions0', this.state.questions)
+        this.setState({
+          questions: data.questions,
+          solvers: data.solvers,
+          questions_solvers: data.questions_solvers});
+        console.log('questions', this.state.questions)
+        console.log('solvers', this.state.solvers)
+        console.log('questions_solvers', this.state.questions_solvers)
       });
-    fetch('http://localhost:3000/solvers')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-        this.setState({solvers: data});
-      });
-{/*     fetch('http://localhost:3000/questions_solvers')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-        this.setState({questions_solvers: data[0]});
-      });
-      */}
   }
 
   addQuestion = (question) => {
-  var url = 'http://localhost:3000/questions';
+  var url = baseUrl + 'questions';
   fetch(url, {
     method: 'POST', // or 'PUT'
     body: JSON.stringify(question),
@@ -51,7 +46,7 @@ class App extends Component {
   }
 
   addSolver = (solver) => {
-  var url = 'http://localhost:3000/solvers';
+  var url = baseUrl + 'solvers';
   fetch(url, {
     method: 'POST', // or 'PUT'
     body: JSON.stringify(solver),
@@ -64,7 +59,7 @@ class App extends Component {
   }
 
   addQuestionSolver = (question) => {
-  var url = 'http://localhost:3000/questions_solvers';
+  var url = baseUrl + 'questions_solvers';
   fetch(url, {
     method: 'POST', // or 'PUT'
     body: JSON.stringify(question),
@@ -80,10 +75,10 @@ class App extends Component {
     event.preventDefault()
     const form = event.target;
     const data = new FormData(form);
-    const questions = this.state.questions.questions
+    const questions = this.state.questions
     console.log('questions', questions)
     const question = ({
-      id: this.state.questions.questions.length + 1,
+      id: this.state.questions.length + 1,
       question_name: data.get('qname'),
       question: data.get('qtext'),
       solution: data.get('solution'),
@@ -92,7 +87,7 @@ class App extends Component {
     questions.push(question)
     this.addQuestion(question)
     this.setState({ questions })
-    window.location.assign('http://localhost:3001')
+    window.location.assign(homeUrl)
   }
 
   onSolverSubmit = (event) => {
@@ -108,7 +103,7 @@ class App extends Component {
     solvers.push(solver)
     this.addSolver(solver)
     this.setState({ solvers })
-    window.location.assign('http://localhost:3001')
+    window.location.assign(homeUrl)
   }
 
   onQuestionSolverSubmit = (event) => {
@@ -125,7 +120,7 @@ class App extends Component {
     questions_solvers.push(question_solver)
     this.addQuestion(question_solver)
     this.setState({ questions_solvers })
-    window.location.assign('http://localhost:3001')
+    window.location.assign(homeUrl)
   }
 
 
