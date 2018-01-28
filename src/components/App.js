@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Modal from 'react-modal';
 import './App.css';
 import Header from './Header.js'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import BrowseList from './browselist.js'
-import RandomQ from './randomq.js'
-import Form from './form.js'
-import Modal from 'react-modal';
-
-
-// Modal.setAppElement('.App');
+import BrowseList from './Browselist.js'
+import RandomQ from './Randomq.js'
+import Form from './Form.js'
 
 class App extends Component {
-  state = {questions: [],
+  state = {
+    questions: [],
     solvers: [],
-    questions_solvers: []}
+    questions_solvers: []
+  }
 
   componentDidMount() {
     Modal.setAppElement('.App');
     fetch('http://localhost:3000/questions')
       .then(response => response.json())
       .then(data => {
-        this.setState({questions: data})
+        this.setState({questions: data.questions});
+        console.log('questions0', this.state.questions)
       });
     fetch('http://localhost:3000/solvers')
       .then(response => response.json())
