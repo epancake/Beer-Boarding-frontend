@@ -38,6 +38,8 @@ class QuestionCard extends Component {
   this.createOptionsList = this.createOptionsList.bind(this);
   this.submitSolver = this.submitSolver.bind(this);
   this.getSolvedBy = this.getSolvedBy.bind(this);
+  this.onSolverSubmit = this.onSolverSubmit.bind(this);
+
   }
 
   componentDidMount () {
@@ -65,7 +67,8 @@ class QuestionCard extends Component {
 
   submitSolver(event) {
     event.preventDefault();
-    this.onSolverSubmit(event);
+    console.log('submitted in the card')
+    this.getSolvedBy(event);
     this.setState({submitModalIsOpen: false});
   }
 
@@ -111,27 +114,54 @@ class QuestionCard extends Component {
       );
   }
 
+  getOptionId (item, index) {
+      return (
+        <option key={item.id} value={item.id}>
+          {item.id}
+        </option>
+      );
+  }
+
   getSolvedBy (questionId) {
     console.log('fetching solvers')
     var url = baseUrl + 'solvedby/' + questionId;
     fetch(url)
       .then(res => res.json())
-      .then(res => {console.log('res', res); return res})
       .then(res => {
         this.setState({
           solvedBy: res.solvers
         })
         {/* res.solvers.forEach((item)=> this.state.solvedBy.push(item.solver_name)) */}
       })
-      .then(res => console.log('matt', this.state.solvedBy))
       .catch(error => console.error('Error:', error))
       .then(response => console.log('Success:', response))
     }
 
+    onSolverSubmit = (event) => {
+      event.preventDefault()
+      const form = event.target;
+      const data = new FormData(form);
+      const questions_solvers = this.props.questions_solvers
+      const question_solver = ({
+        id: questions_solvers.length + 1,
+        quetions_id: this.props.question.id,
+        solvers_id: parseInt(this.state.selectedValue)
+      })
+      console.log('obcect to submit', question_solver)
+      this.props.questions_solvers.push(question_solver)
+      this.props.addSolvedBy(question_solver)
+      this.setState({ questions_solvers })
+      // window.location.assign(homeUrl)
+    }
+
   render() {
 
-    let something = this.state.solvedBy.map(person => {
-      return <p>{person.solver_name}</p>
+    let solvedByName = this.state.solvedBy.map(person => {
+      return <span className='solvedbyitem'><br/>{person.solver_name}</span>
+    })
+
+    let solvedById = this.state.solvedBy.map(person => {
+      return <span className='solvedbyitem'><br/>{person.id}</span>
     })
 
 
@@ -144,10 +174,10 @@ class QuestionCard extends Component {
             <div className='cardtext'>
               <div id='questionText'><strong>Question:</strong><br></br>{this.props.question.question.split("\n").map((i, index)=> {
             return <div key={i.length + index}>{i}</div>;})}</div>
-              <div id='solutionText' onClick={this.toggleFunction}><strong>Solution:</strong> <span class='clicktext'>Click to show.</span><br></br><span className={this.state.toggleClass?'hidden':''}>{this.props.question.solution.split("\n").map((i, index) => {
+              <div id='solutionText' onClick={this.toggleFunction}><strong>Solution:</strong> <span className='clicktext'>Click to show.</span><br></br><span className={this.state.toggleClass?'hidden':''}>{this.props.question.solution.split("\n").map((i, index) => {
             return <div key={i.length + index}>{i}</div>;})}</span></div>
               <p id='submitText'><strong>Submitted by:</strong> {this.props.question.submitter}</p>
-              <p id='solverText'><strong>Solved by:</strong>{something}</p>
+              <p id='solverText'><strong>Solved by:</strong>{solvedByName}</p>
             </div>
           </div>
           <aside className="cardbuttons">
@@ -170,9 +200,9 @@ class QuestionCard extends Component {
           <select onChange={(e) => this.setState({selectedValue: e.target.value})} name="name">
             {this.props.solvers.map(this.createOptionsList)}
           </select >
+          <button onClick={this.onSolverSubmit}>Submit</button>
+          <button onClick={this.closeSubmitModal}>Cancel</button>
         </form>
-        <button onClick={this.SubmitSolver}>Submit</button>
-        <button onClick={this.closeSubmitModal}>Cancel</button>
         <form onSubmit={this.props.postName}>
           <label>Don't see your name in the list? Add it:</label>
           <input type='text' name='newsolver'></input>

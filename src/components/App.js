@@ -81,6 +81,21 @@ class App extends Component {
       this.setState({solvers: data})});
   }
 
+  addSolvedBy = (questions_solver) => {
+  var url = baseUrl + 'questions_solvers';
+  fetch(url, {
+    method: 'POST', // or 'PUT'
+    body: JSON.stringify(questions_solver),
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    })
+  }).then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(response => console.log('Success:', response))
+  .then(data =>{
+      this.setState({questions_solvers: data})})
+  }
+
   addQuestionSolved = (question) => {
   var url = baseUrl + 'questions_solvers';
   fetch(url, {
@@ -114,21 +129,7 @@ class App extends Component {
     // window.location.assign(homeUrl)
   }
 
-  onSolverSubmit = (event) => {
-    event.preventDefault()
-    const form = event.target;
-    const data = new FormData(form);
-    const solvers = this.state.solvers
-    console.log('solvers', solvers)
-    const solver = ({
-      id: this.state.solvers.solvers.length + 1,
-      solver_name: data.get('sname'),
-    })
-    solvers.push(solver)
-    this.addSolver(solver)
-    this.setState({ solvers })
-    window.location.assign(homeUrl)
-  }
+
 
   onQuestionSolverSubmit = (event) => {
     event.preventDefault()
@@ -173,7 +174,9 @@ class App extends Component {
                 postName={this.postName}
                 onSolverSubmit={this.onSolverSubmit}
                 onDelete={this.onDelete}
-                getSolvedBy={this.getSolvedBy}/>} />
+                getSolvedBy={this.getSolvedBy}
+                questions_solvers={this.state.questions_solvers}
+                addSolvedBy={this.addSolvedBy}/>} />
               <Route path="/random" render={()=><RandomQ solvers={this.state.solvers}
                 questions={this.state.questions}
                 onDelete={this.onDelete}
