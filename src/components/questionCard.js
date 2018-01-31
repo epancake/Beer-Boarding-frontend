@@ -144,7 +144,7 @@ class QuestionCard extends Component {
             <div className='cardtext'>
               <div id='questionText'><strong>Question:</strong><br></br>{this.props.question.question.split("\n").map((i, index)=> {
             return <div key={i.length + index}>{i}</div>;})}</div>
-              <div id='solutionText' onClick={this.toggleFunction}><strong>Solution:</strong> Click to show.<br></br><span className={this.state.toggleClass?'hidden':''}>{this.props.question.solution.split("\n").map((i, index) => {
+              <div id='solutionText' onClick={this.toggleFunction}><strong>Solution:</strong> <span class='clicktext'>Click to show.</span><br></br><span className={this.state.toggleClass?'hidden':''}>{this.props.question.solution.split("\n").map((i, index) => {
             return <div key={i.length + index}>{i}</div>;})}</span></div>
               <p id='submitText'><strong>Submitted by:</strong> {this.props.question.submitter}</p>
               <p id='solverText'><strong>Solved by:</strong>{something}</p>

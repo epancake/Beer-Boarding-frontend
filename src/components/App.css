@@ -219,3 +219,8 @@ strong {
 select {
   width: 30vw
 }
+
+.clicktext {
+  color: rgb(14, 67, 227);
+  text-decoration: underline;
+}
