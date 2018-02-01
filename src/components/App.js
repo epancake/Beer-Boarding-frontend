@@ -7,6 +7,7 @@ import BrowseList from './Browselist.js'
 import RandomQ from './Randomq.js'
 import Form from './Form.js'
 import PeopleGraph from './Graphs.js'
+import { Button } from 'antd'
 
 var baseUrl = 'http://beerboardapi.herokuapp.com/'
 var homeUrl = 'http://localhost:3000'
@@ -62,6 +63,7 @@ class App extends Component {
       id: this.state.solvers.length + 20,
       solver_name: data.get('newsolver'),
     })
+    console.log(solver)
     solvers.push(solver)
     this.addSolver(solver)
   }
@@ -78,11 +80,13 @@ class App extends Component {
   .catch(error => console.error('Error:', error))
   .then(response => console.log('Success:', response))
   .then(data =>{
+    if (!data) return console.error("add solver error");
       this.setState({solvers: data})});
   }
 
   addSolvedBy = (questions_solver) => {
   var url = baseUrl + 'questions_solvers';
+  console.log('url', url)
   fetch(url, {
     method: 'POST', // or 'PUT'
     body: JSON.stringify(questions_solver),
@@ -92,8 +96,6 @@ class App extends Component {
   }).then(res => res.json())
   .catch(error => console.error('Error:', error))
   .then(response => console.log('Success:', response))
-  .then(data =>{
-      this.setState({questions_solvers: data})})
   }
 
   addQuestionSolved = (question) => {
@@ -155,36 +157,37 @@ class App extends Component {
         <Router >
           <div>
             <Link to="/browselist">
-              <button>Browse Questions</button>
+              <Button className='navbtn' >Browse Questions</Button>
             </Link>
             <Link to="/random">
-              <button>Random Question</button>
+              <Button>Random Question</Button>
             </Link>
             <Link to="/add">
-              <button>Add a Question</button>
+              <Button>Add a Question</Button>
             </Link>
             <Link to="/graphs">
-              <button>Fun Graphs</button>
+              <Button>Fun Graphs</Button>
             </Link>
-            <div>
-              <Route path="/browselist" render={()=><BrowseList solvers={this.state.solvers}
-                questions={this.state.questions}
-                onDelete={this.onDelete}
-                onQuestionSolverSubmit={this.onQuestionSolverSubmit}
-                postName={this.postName}
-                onSolverSubmit={this.onSolverSubmit}
-                onDelete={this.onDelete}
-                getSolvedBy={this.getSolvedBy}
-                questions_solvers={this.state.questions_solvers}
-                addSolvedBy={this.addSolvedBy}/>} />
-              <Route path="/random" render={()=><RandomQ solvers={this.state.solvers}
-                questions={this.state.questions}
-                onDelete={this.onDelete}
-                onQuestionSolverSubmit={this.onQuestionSolverSubmit}
-                postName={this.postName}/>} />
-              <Route path="/add" render={()=><Form questions={this.state.questions} onSubmit={this.onSubmit}/>} />
-              <Route path="/graphs" render={()=><PeopleGraph questions={this.state.questions}/>} />
-
+            <div className='parallax'>
+              <div>
+                <Route path="/browselist" render={()=><BrowseList solvers={this.state.solvers}
+                  questions={this.state.questions}
+                  onDelete={this.onDelete}
+                  onQuestionSolverSubmit={this.onQuestionSolverSubmit}
+                  postName={this.postName}
+                  onSolverSubmit={this.onSolverSubmit}
+                  onDelete={this.onDelete}
+                  getSolvedBy={this.getSolvedBy}
+                  questions_solvers={this.state.questions_solvers}
+                  addSolvedBy={this.addSolvedBy}/>} />
+                <Route path="/random" render={()=><RandomQ solvers={this.state.solvers}
+                  questions={this.state.questions}
+                  onDelete={this.onDelete}
+                  onQuestionSolverSubmit={this.onQuestionSolverSubmit}
+                  postName={this.postName}/>} />
+                <Route path="/add" render={()=><Form questions={this.state.questions} onSubmit={this.onSubmit}/>} />
+                <Route path="/graphs" render={()=><PeopleGraph questions={this.state.questions}/>} />
+            </div>
             </div>
           </div>
         </Router>

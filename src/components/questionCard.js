@@ -3,6 +3,8 @@ import Modal from 'react-modal';
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
 import Downshift from 'downshift'
+import { Button } from 'antd';
+import 'antd/dist/antd.css'
 
 var baseUrl = 'http://beerboardapi.herokuapp.com/'
 var homeUrl = 'http://localhost:3000/'
@@ -86,6 +88,7 @@ class QuestionCard extends Component {
   })
   .then(console.log('great succes'))
   .then(data =>{
+    if (!data) return console.error('no data on delete response');
       this.setState({solvers: data})});;
   }
 
@@ -143,15 +146,15 @@ class QuestionCard extends Component {
       const data = new FormData(form);
       const questions_solvers = this.props.questions_solvers
       const question_solver = ({
-        id: questions_solvers.length + 1,
-        quetions_id: this.props.question.id,
-        solvers_id: parseInt(this.state.selectedValue)
+        "id": questions_solvers.length + 1,
+        "questions_id": this.props.question.id,
+        "solvers_id": parseInt(this.state.selectedValue)
       })
-      console.log('obcect to submit', question_solver)
+      console.log('object to submit', question_solver)
       this.props.questions_solvers.push(question_solver)
+      console.log('array', this.props.questions_solvers)
       this.props.addSolvedBy(question_solver)
       this.setState({ questions_solvers })
-      // window.location.assign(homeUrl)
     }
 
   render() {
@@ -181,8 +184,8 @@ class QuestionCard extends Component {
             </div>
           </div>
           <aside className="cardbuttons">
-              <button onClick={this.openSubmitModal}>Solved!</button>
-              <button id='delete' onClick={this.openDeleteModal}>Delete</button>
+              <Button onClick={this.openSubmitModal} type="primary">Solved!</Button>
+              <Button id='delete' onClick={this.openDeleteModal} type="danger">Delete</Button>
           </aside>
 
         </main>
@@ -200,13 +203,13 @@ class QuestionCard extends Component {
           <select onChange={(e) => this.setState({selectedValue: e.target.value})} name="name">
             {this.props.solvers.map(this.createOptionsList)}
           </select >
-          <button onClick={this.onSolverSubmit}>Submit</button>
-          <button onClick={this.closeSubmitModal}>Cancel</button>
+          <Button onClick={this.onSolverSubmit}>Submit</Button>
+          <Button onClick={this.closeSubmitModal}>Cancel</Button>
         </form>
         <form onSubmit={this.props.postName}>
           <label>Don't see your name in the list? Add it:</label>
           <input type='text' name='newsolver'></input>
-          <input type='submit' value='Add name'/>
+          <Button type='submit' value='Add name'>Add name</Button>
         </form>
         <form onSubmit={this.deleteName}>
           <label>Delete a person (cruel!):</label>
@@ -223,8 +226,8 @@ class QuestionCard extends Component {
           contentLabel="Example Modal2"
         >
         <div>Are you sure? That bad huh? This will be removed from the questions database forever.</div>
-        <button id='delete' onClick={this.closeDeleteModal}>Delete Question</button>
-        <button onClick={this.cancelDelete}>Cancel</button>
+        <Button id='delete' type="danger" onClick={this.closeDeleteModal}>Delete Question</Button>
+        <Button type="primary" onClick={this.cancelDelete}>Cancel</Button>
         </Modal>
 
       </div>

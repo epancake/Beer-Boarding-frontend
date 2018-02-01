@@ -224,3 +224,20 @@ select {
   color: rgb(14, 67, 227);
   text-decoration: underline;
 }
+
+
+.parallax {
+  background-image: url("beer_10.jpg");
+  height: 5000px;
+  background-attachment: fixed;
+  background-position: 19rem 13rem;
+  background-repeat: repeat-y;
+  background-size: auto;
+  overflow: hidden,
+  padd
+}
+
+#navbtn {
+  padding: .5rem;
+  color: #00897b;
+}
