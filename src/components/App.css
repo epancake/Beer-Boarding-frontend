@@ -3,8 +3,7 @@
 }
 
 .App-logo {
-  animation: App-logo-spin 1 4s linear;
-  padding: 2rem;
+  margin: .75rem;
   height: 15vh;
 }
 
@@ -240,4 +239,22 @@ select {
 #navbtn {
   padding: .5rem;
   color: #00897b;
+}
+
+.ant-btn-primary {
+  background-color: #00897b;
+  border-color: white;
+}
+
+.ant-btn-danger {
+  color: white;
+}
+
+.existingtext {
+  font-style: italic;
+}
+
+.add {
+  touch-action: auto;
+  width: 95%;
 }

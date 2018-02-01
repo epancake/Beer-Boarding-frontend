@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Modal from 'react-modal';
-import './App.css';
 import Header from './Header.js'
 import BrowseList from './Browselist.js'
 import RandomQ from './Randomq.js'
 import Form from './Form.js'
 import PeopleGraph from './Graphs.js'
 import { Button } from 'antd'
+
+
 
 var baseUrl = 'http://beerboardapi.herokuapp.com/'
 var homeUrl = 'http://localhost:3000'
@@ -49,6 +50,8 @@ class App extends Component {
       this.setState({questions: data});
     })
   }
+
+
 
 
 
@@ -94,8 +97,9 @@ class App extends Component {
       'Content-Type': 'application/json'
     })
   }).then(res => res.json())
-  .catch(error => console.error('Error:', error))
   .then(response => console.log('Success:', response))
+  .catch(error => console.error('Error:', error))
+
   }
 
   addQuestionSolved = (question) => {
@@ -131,7 +135,42 @@ class App extends Component {
     // window.location.assign(homeUrl)
   }
 
+  onSubmitUpdate = (event) => {
+    console.log('onSubmitUpdate fired')
+    event.preventDefault()
+    const form = event.target;
+    const data = new FormData(form);
+    const questions = this.state.questions
+    console.log('questions1', questions)
+    const question = ({
+      "id": data.get('qid'),
+      "question_name": data.get('qname'),
+      "question": data.get('qtext'),
+      "solution": data.get('solution'),
+      "submitter": data.get('submitter')
+    })
+    console.log('submitted', question)
+    // questions.push(question)
+    this.updateQuestion(question)
+    this.setState({ questions })
+    // window.location.assign(homeUrl)
+  }
 
+  updateQuestion = (question) => {
+  var url = baseUrl + 'questions/' + question.id;
+  fetch(url, {
+    method: 'PUT', // or 'PUT'
+    body: JSON.stringify(question),
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    })
+  }).then(res => res.json())
+  .then(data =>{
+      this.setState({questions: data})
+  .catch(error => console.error('Error:', error))
+  .then(response => console.log('Success:', response))
+    })
+  }
 
   onQuestionSolverSubmit = (event) => {
     event.preventDefault()
@@ -165,9 +204,6 @@ class App extends Component {
             <Link to="/add">
               <Button>Add a Question</Button>
             </Link>
-            <Link to="/graphs">
-              <Button>Fun Graphs</Button>
-            </Link>
             <div className='parallax'>
               <div>
                 <Route path="/browselist" render={()=><BrowseList solvers={this.state.solvers}
@@ -179,14 +215,15 @@ class App extends Component {
                   onDelete={this.onDelete}
                   getSolvedBy={this.getSolvedBy}
                   questions_solvers={this.state.questions_solvers}
-                  addSolvedBy={this.addSolvedBy}/>} />
+                  addSolvedBy={this.addSolvedBy}
+                  onSubmitUpdate={this.onSubmitUpdate} />} />
                 <Route path="/random" render={()=><RandomQ solvers={this.state.solvers}
                   questions={this.state.questions}
                   onDelete={this.onDelete}
                   onQuestionSolverSubmit={this.onQuestionSolverSubmit}
-                  postName={this.postName}/>} />
+                  postName={this.postName}
+                  onSubmitUpdate={this.onSubmitUpdate} />} />
                 <Route path="/add" render={()=><Form questions={this.state.questions} onSubmit={this.onSubmit}/>} />
-                <Route path="/graphs" render={()=><PeopleGraph questions={this.state.questions}/>} />
             </div>
             </div>
           </div>

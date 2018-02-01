@@ -16,7 +16,8 @@ const BrowseList = (props) => {
       questions_solvers={props.questions_solvers}
       onSolverSubmit={props.onSolverSubmit}
       postName={props.postName}
-      addSolvedBy={props.addSolvedBy}/>
+      addSolvedBy={props.addSolvedBy}
+      onSubmitUpdate={props.onSubmitUpdate}/>
   })
 
 }

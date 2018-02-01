@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
-import Dropdown from 'react-dropdown'
-import 'react-dropdown/style.css'
-import Downshift from 'downshift'
 import { Button } from 'antd';
-import 'antd/dist/antd.css'
+import Form from './Form.js'
+
 
 var baseUrl = 'http://beerboardapi.herokuapp.com/'
 var homeUrl = 'http://localhost:3000/'
@@ -17,11 +15,13 @@ class QuestionCard extends Component {
   this.state = {
     submitModalIsOpen: false,
     deleteModalIsOpen: false,
+    updateModalIsOpen: false,
     solvers_here: [],
     toggleClass: true,
     selectedValue: '',
     solvers: [],
-    solvedBy: []
+    solvedBy: [],
+    formData: {...props.question}
   };
 
   const names = () => {
@@ -34,7 +34,10 @@ class QuestionCard extends Component {
   this.closeSubmitModal = this.closeSubmitModal.bind(this);
   this.openDeleteModal = this.openDeleteModal.bind(this);
   this.closeDeleteModal = this.closeDeleteModal.bind(this);
+  this.openUpdateModal = this.openUpdateModal.bind(this);
+  this.closeUpdateModal = this.closeUpdateModal.bind(this);
   this.cancelDelete = this.cancelDelete.bind(this);
+  this.cancelUpdate = this.cancelUpdate.bind(this);
   this.handleChange = this.handleChange.bind(this);
   this.deleteName = this.deleteName.bind(this);
   this.createOptionsList = this.createOptionsList.bind(this);
@@ -67,6 +70,10 @@ class QuestionCard extends Component {
     this.setState({deleteModalIsOpen: false});
   }
 
+  cancelUpdate() {
+    this.setState({updateModalIsOpen: false});
+  }
+
   submitSolver(event) {
     event.preventDefault();
     console.log('submitted in the card')
@@ -76,6 +83,10 @@ class QuestionCard extends Component {
 
   openDeleteModal() {
     this.setState({deleteModalIsOpen: true});
+  }
+
+  openUpdateModal() {
+    this.setState({updateModalIsOpen: true});
   }
 
   onDelete = (id, url) => {
@@ -96,6 +107,10 @@ class QuestionCard extends Component {
     this.setState({deleteModalIsOpen: false});
     console.log(this.value)
     this.onDelete(this.props.question.id, baseUrl + 'questions');
+  }
+
+  closeUpdateModal() {
+    this.setState({updateModalIsOpen: false});
   }
 
   deleteName(e) {
@@ -184,8 +199,10 @@ class QuestionCard extends Component {
             </div>
           </div>
           <aside className="cardbuttons">
-              <Button onClick={this.openSubmitModal} type="primary">Solved!</Button>
+              <Button id='ant-btn-primary'onClick={this.openSubmitModal} type="primary">Solved!</Button>
               <Button id='delete' onClick={this.openDeleteModal} type="danger">Delete</Button>
+              <Button id='update' onClick={this.openUpdateModal} type="primary">Update</Button>
+
           </aside>
 
         </main>
@@ -196,7 +213,7 @@ class QuestionCard extends Component {
         <Modal
           isOpen={this.state.submitModalIsOpen}
           onRequestClose={this.closeSubmitModal}
-          contentLabel="Example Modal"
+          contentLabel="Solved Modal"
         >
         <h2 ref={subtitle => this.subtitle = subtitle}>What a champion!</h2>
         <form>
@@ -223,11 +240,34 @@ class QuestionCard extends Component {
         <Modal
           isOpen={this.state.deleteModalIsOpen}
           onRequestClose={this.closeDeleteModal}
-          contentLabel="Example Modal2"
+          contentLabel="Delete Modal"
         >
-        <div>Are you sure? That bad huh? This will be removed from the questions database forever.</div>
-        <Button id='delete' type="danger" onClick={this.closeDeleteModal}>Delete Question</Button>
+        <p>Are you sure you want to delete this question <strong>and all of the data </strong>that goes with it?</p>
+        <Button id='delete' type="danger" onClick={this.closeDeleteModal}>Delete!</Button>
         <Button type="primary" onClick={this.cancelDelete}>Cancel</Button>
+        </Modal>
+
+        <Modal
+          isOpen={this.state.updateModalIsOpen}
+          onRequestClose={this.closeUpdateModal}
+          contentLabel="Update Modal"
+        >
+          <Button type="primary" onClick={this.cancelUpdate}>Cancel</Button>
+          <h3>Update the question</h3>
+          <p>Fill in all the fields and the question will be updated. If you leave any fields blank, the question will be blank too.</p>
+          <form className='addform' id='form' onSubmit={this.props.onSubmitUpdate}>
+            <label className='add qid-label hidden' htmlFor="qid">Question ID:</label>
+            <input className='add qid-field hidden' type="text" name="qid" defaultValue={this.state.formData.id}></input>
+            <label className='add qname-label' htmlFor="qname" >Question Name:</label>
+            <input className='add qname-field' type="text" name="qname" defaultValue={this.state.formData.question_name}></input>
+            <label className='add qtext-label' htmlFor="qtext">Question: </label>
+            <textarea className='add qtext-field' name="qtext" rows="5" defaultValue={this.state.formData.question}></textarea>
+            <label className='add sname-label' htmlFor="solution">Solution: </label>
+            <textarea className='add sname-text' name="solution" rows="5" defaultValue={this.state.formData.solution}></textarea>
+            <label className='add subm-label' htmlFor="submitter">Your First and Last Name:</label>
+            <input className='add subm-text' type="text" name="submitter" defaultValue={this.state.formData.submitter}></input>
+            <input className='add addqbutn' type="submit" value="Submit"/>
+          </form>
         </Modal>
 
       </div>
