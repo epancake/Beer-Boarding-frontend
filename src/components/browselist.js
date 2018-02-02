@@ -1,15 +1,19 @@
 import React from 'react'
 import QuestionCard from './QuestionCard.js'
+const location = 'http://localhost:3000/browselist'
 
 const BrowseList = (props) => {
-  const questions = props.questions
-  console.log(props.questionssolvers)
 
-  if (questions.length < 1) {
+  setTimeout(window.location.reload.bind(location), 4000);
+
+
+  if (!props.questions) {
     return <p>No data yet, one second please!!!</p>
+  } else if (props.questions) {
+    props.questions.sort(function (a, b) {return a.id - b.id;})
   }
 
-  return questions.map((question) => {
+  return props.questions.map((question) => {
     return <QuestionCard key={question.id}
       question={question}
       solvers={props.solvers}

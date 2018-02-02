@@ -258,3 +258,9 @@ select {
   touch-action: auto;
   width: 95%;
 }
+
+.anticon-check-circle, .anticon-close-circle {
+  color: #00897b;
+  font-size: 3rem;
+  margin: 2rem;
+}

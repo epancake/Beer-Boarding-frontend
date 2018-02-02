@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import { Button } from 'antd';
-import Form from './Form.js'
-
+import { Icon } from 'antd';
 
 var baseUrl = 'http://beerboardapi.herokuapp.com/'
 var homeUrl = 'http://localhost:3000/'
@@ -21,14 +20,15 @@ class QuestionCard extends Component {
     selectedValue: '',
     solvers: [],
     solvedBy: [],
-    formData: {...props.question}
+    formData: {...props.question},
+    newSolver: ""
   };
 
-  const names = () => {
-    return this.props.solvers.filter(
-      item => item.solver_name
-    )
-  }
+  // const names = () => {
+  //   return this.props.solvers.filter(
+  //     item => item.solver_name
+  //   )
+  // }
 
   this.openSubmitModal = this.openSubmitModal.bind(this);
   this.closeSubmitModal = this.closeSubmitModal.bind(this);
@@ -49,6 +49,7 @@ class QuestionCard extends Component {
 
   componentDidMount () {
     this.getSolvedBy(this.props.question.id)
+    console.log('cardprops', this.props)
   }
 
   toggleFunction = () => {
@@ -97,10 +98,11 @@ class QuestionCard extends Component {
       'Content-Type': 'application/json'
     })
   })
-  .then(console.log('great succes'))
+  .then(res => {window.location.assign(homeUrl + 'deleted'); return res})
   .then(data =>{
     if (!data) return console.error('no data on delete response');
-      this.setState({solvers: data})});;
+      this.setState({solvers: data})})
+  .then(console.log('great succes'))
   }
 
   closeDeleteModal() {
@@ -149,7 +151,6 @@ class QuestionCard extends Component {
         this.setState({
           solvedBy: res.solvers
         })
-        {/* res.solvers.forEach((item)=> this.state.solvedBy.push(item.solver_name)) */}
       })
       .catch(error => console.error('Error:', error))
       .then(response => console.log('Success:', response))
@@ -199,9 +200,9 @@ class QuestionCard extends Component {
             </div>
           </div>
           <aside className="cardbuttons">
-              <Button id='ant-btn-primary'onClick={this.openSubmitModal} type="primary">Solved!</Button>
-              <Button id='delete' onClick={this.openDeleteModal} type="danger">Delete</Button>
-              <Button id='update' onClick={this.openUpdateModal} type="primary">Update</Button>
+              <Button id='ant-btn-primary'onClick={this.openSubmitModal} type="primary">Solved! <Icon type="check-circle-o" /></Button>
+              <Button id='delete' onClick={this.openDeleteModal} type="danger">Delete <Icon type="delete" /></Button>
+              <Button id='update' onClick={this.openUpdateModal} type="primary">Update <Icon type="edit" /></Button>
 
           </aside>
 
@@ -223,10 +224,10 @@ class QuestionCard extends Component {
           <Button onClick={this.onSolverSubmit}>Submit</Button>
           <Button onClick={this.closeSubmitModal}>Cancel</Button>
         </form>
-        <form onSubmit={this.props.postName}>
+        <form>
           <label>Don't see your name in the list? Add it:</label>
-          <input type='text' name='newsolver'></input>
-          <Button type='submit' value='Add name'>Add name</Button>
+          <input type='text' name='newsolver' onChange={(e)=>{this.setState({newSolver: e.target.value}); console.log(this.state.newSolver)}}></input>
+          <Button onClick={()=>this.props.postName(this.state.newSolver)} type='submit' value='Add name'>Add Name</Button>
         </form>
         <form onSubmit={this.deleteName}>
           <label>Delete a person (cruel!):</label>
