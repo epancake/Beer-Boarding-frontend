@@ -1,6 +1,6 @@
 import React from 'react'
 import QuestionCard from './QuestionCard.js'
-const location = 'http://localhost:3000/browselist'
+const location = 'http://localhost:3001/browselist'
 
 const BrowseList = (props) => {
 
@@ -14,7 +14,7 @@ const BrowseList = (props) => {
   }
 
   return props.questions.map((question) => {
-    return <QuestionCard key={question.id}
+    return <QuestionCard key={question.id + question.name}
       question={question}
       solvers={props.solvers}
       questions_solvers={props.questions_solvers}

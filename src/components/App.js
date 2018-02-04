@@ -199,7 +199,6 @@ class App extends Component {
               <div>
                 <Route path="/browselist" render={()=><BrowseList solvers={this.state.solvers}
                   questions={this.state.questions}
-                  onDelete={this.onDelete}
                   onQuestionSolverSubmit={this.onQuestionSolverSubmit}
                   postName={this.postName}
                   onSolverSubmit={this.onSolverSubmit}
@@ -209,7 +208,6 @@ class App extends Component {
                   onSubmitUpdate={this.onSubmitUpdate} />} />
                 <Route path="/random" render={()=><RandomQ solvers={this.state.solvers}
                   questions={this.state.questions}
-                  onDelete={this.onDelete}
                   onQuestionSolverSubmit={this.onQuestionSolverSubmit}
                   postName={this.postName}
                   onSolverSubmit={this.onSolverSubmit}

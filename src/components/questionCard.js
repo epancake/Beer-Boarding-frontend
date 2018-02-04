@@ -90,36 +90,40 @@ class QuestionCard extends Component {
     this.setState({updateModalIsOpen: true});
   }
 
+  deleteName(e) {
+    e.preventDefault()
+    console.log('selected value:', this.state.selectedValue)
+    this.onDelete(this.state.selectedValue, baseUrl + 'solvers/');
+  }
+
+  closeDeleteModal() {
+    this.setState({deleteModalIsOpen: false});
+    console.log(this.value)
+    this.onDelete(this.props.question.id, baseUrl + 'questions/');
+  }
+
   onDelete = (id, url) => {
     console.log(id, url)
-  return fetch(url + '/' + id, {
+  return fetch(url + id, {
     method: 'delete',
     headers: new Headers({
       'Content-Type': 'application/json'
     })
   })
   .then(res => {window.location.assign(homeUrl + 'deleted'); return res})
-  .then(data =>{
+  .then(data => {
     if (!data) return console.error('no data on delete response');
       this.setState({solvers: data})})
   .then(console.log('great succes'))
   }
 
-  closeDeleteModal() {
-    this.setState({deleteModalIsOpen: false});
-    console.log(this.value)
-    this.onDelete(this.props.question.id, baseUrl + 'questions');
-  }
+
 
   closeUpdateModal() {
     this.setState({updateModalIsOpen: false});
   }
 
-  deleteName(e) {
-    e.preventDefault()
-    console.log('selected value:', this.state.selectedValue)
-    this.onDelete(this.state.selectedValue, baseUrl + 'solvers');
-  }
+
 
   handleChange (e) {
       this.setState({selectedValue: e.target.value})
