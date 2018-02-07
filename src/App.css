@@ -225,7 +225,7 @@ select {
 
 
 .parallax {
-  background-image: url("beer1_10.jpg");
+  background-image: url("./components/beer1_10.jpg");
   height: 5000px;
   background-attachment: fixed;
   background-position: -2rem -.5rem;

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Modal from 'react-modal';
-import Header from './Header.js'
-import Success from './Success.js'
-import Deleted from './Delete.js'
-import BrowseList from './Browselist.js'
-import RandomQ from './Randomq.js'
-import Form from './Form.js'
+import Header from './components/Header.js'
+import Success from './components/Success.js'
+import Deleted from './components/Delete.js'
+import BrowseList from './components/Browselist.js'
+import RandomQ from './components/Randomq.js'
+import Form from './components/Form.js'
 import { Button } from 'antd'
 import { Icon } from 'antd'
 
