@@ -5,20 +5,16 @@ import QuestionCard from './QuestionCard'
 
 const RandomQ = (props) => {
   const questions = props.questions
-
+  console.log('quesitions', questions)
   const randomid = () => {
-    var rid = Math.floor(Math.random() * (questions.length)+1);
-    console.log('rid', rid)
-    return rid
+    var rindex = Math.floor(Math.random() * (questions.length));
+    console.log('riindexd', rindex)
+    return rindex
   }
 
-  const rid = randomid()
+  const rindex = randomid()
 
-  const singleQuestion = () => {
-    return questions.filter((question) => question.id === rid)[0]
-  }
-
-  const question = singleQuestion()
+  const question = questions[rindex]
   console.log('finalSingleQ', question)
 
   return <QuestionCard key={question.id} question={question} solvers={props.solvers} postName={props.postName}/>

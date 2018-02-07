@@ -119,56 +119,57 @@ button, input[type="submit"] {
 input, textarea {
   width: 96%;
   grid-column: 2 / 3;
-  margin-bottom: 1rem;
-  padding: 2%
+  margin-bottom: .25rem;
+  padding: 1%;
+  resize: none
 }
 
 .qname-label {
   grid-column: 2;
   grid-row: 1 / 2;
-  justify-self: start;
+  justify-self: center;
   padding-bottom: .25rem;
 }
 
 .qname-field {
   grid-row: 2 / 3;
-  justify-self: start;
+  justify-self: center;
 }
 
 .qtext-label {
   grid-column: 2 / 3;
   grid-row: 3 / 4;
-  justify-self: start;
+  justify-self: center;
     padding-bottom: .25rem;
 }
 
 .qtext-field {
   grid-row: 4;
-  justify-self: start;
+  justify-self: center;
 }
 
 .sname-label {
   grid-column: 2 / 3;
   grid-row: 5;
-  justify-self: start;
-    padding-bottom: .25rem;
+  justify-self: center;
+  padding-bottom: .25rem;
 }
 
-.sname-field {
+.sname-text {
   grid-row: 6;
-  justify-self: start;
+  justify-self: center;
 }
 
 .subm-label {
+  justify-self: center;
   grid-column: 2 / 3;
   grid-row: 7;
-  justify-self: start;
-    padding-bottom: .25rem;
+  padding-bottom: .25rem;
 }
 
-.subm-field {
+.subm-text {
   grid-row: 8;
-  justify-self: start;
+  justify-self: center;
 }
 
 .addqbutn {
@@ -205,8 +206,6 @@ strong {
   width: 80vh
 }
 
-
-
 #delete {
   background-color: rgb(226, 72, 86)
 }
@@ -226,10 +225,10 @@ select {
 
 
 .parallax {
-  background-image: url("beer_10.jpg");
+  background-image: url("beer1_10.jpg");
   height: 5000px;
   background-attachment: fixed;
-  background-position: 19rem 13rem;
+  background-position: -2rem -.5rem;
   background-repeat: repeat-y;
   background-size: auto;
   overflow: hidden,
@@ -263,4 +262,20 @@ select {
   color: #00897b;
   font-size: 3rem;
   margin: 2rem;
+}
+
+.ant-select-selection {
+  margin-top: 1rem;
+}
+
+.addnamebtn {
+  margin: .25rem 1rem 1rem 1rem;
+}
+
+form {
+  padding: .25rem;
+}
+
+.ant-modal-footer {
+  display: none
 }

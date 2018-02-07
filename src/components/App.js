@@ -47,22 +47,33 @@ class App extends Component {
     })
   }).then(res => res.json())
   .then(res => {window.location.assign(homeUrl + '/success'); return res})
+  .then(data =>{
+      this.setState({questions: data})
+      })
   .catch(error => console.error('Error:', error))
   .then(response => console.log('Success:', response))
-  .then(data =>{
-      this.setState({questions: data});
-    })
   }
 
   postName = (newsolver) => {
     console.log('newsolver', newsolver)
-    const solvers = this.state.solvers
+    const solvers = this.state.solvers;
     const solver = ({
-      "id": this.state.solvers.length + 20,
+      "id": this.getId(solvers),
       "solver_name": newsolver,
     })
     console.log(solver)
     this.addSolver(solver)
+  }
+
+  getId = (array) => {
+    let max = 0;
+    return array.forEach(item => {
+      console.log('item', item)
+      if (item.id > max) {
+        max = item.id
+        console.log('max', max)
+      }
+    });
   }
 
   addSolver = (solver) => {
@@ -74,16 +85,17 @@ class App extends Component {
       'Content-Type': 'application/json'
     })
   }).then(res => res.json())
-  .catch(error => console.error('Error:', error))
-  .then(response => console.log('Success:', response))
+  .then(res => {window.location.assign(homeUrl + '/success'); return res})
   .then(data =>{
     if (!data) return console.error("add solver error");
-      this.setState({solvers: data})});
+      this.setState({solvers: data})})
+  .catch(error => console.error('Error:', error))
+  .then(response => console.log('Success:', response));
   }
 
   addSolvedBy = (questions_solver) => {
   var url = baseUrl + 'questions_solvers';
-  console.log('url', url)
+  console.log('addsolvedby')
   fetch(url, {
     method: 'POST', // or 'PUT'
     body: JSON.stringify(questions_solver),
@@ -92,6 +104,9 @@ class App extends Component {
     })
   }).then(res => res.json())
   .then(res => {window.location.assign(homeUrl + '/success'); return res})
+  .then(data =>{
+    if (!data) return console.error("add solver error");
+      this.setState({questions_solvers: data})})
   .then(response => console.log('Success:', response))
   .catch(error => console.error('Error:', error))
 
@@ -124,7 +139,6 @@ class App extends Component {
       submitter: data.get('submitter')
     })
     console.log('submitted', question)
-    questions.push(question)
     this.addQuestion(question)
     this.setState({ questions })
   }
@@ -197,7 +211,7 @@ class App extends Component {
             </Link>
             <div className='parallax'>
               <div>
-                <Route path="/browselist" render={()=><BrowseList solvers={this.state.solvers}
+                <Route path="/browselist" render={()=><BrowseList key={this.state.solvers.length} solvers={this.state.solvers}
                   questions={this.state.questions}
                   onQuestionSolverSubmit={this.onQuestionSolverSubmit}
                   postName={this.postName}

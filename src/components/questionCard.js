@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import Modal from 'react-modal';
-import { Button } from 'antd';
-import { Icon } from 'antd';
+import { Button, Icon, Select, Modal } from 'antd';
 
+const Option = Select.Option;
+
+var Highlight = require('react-highlight');
 var baseUrl = 'http://beerboardapi.herokuapp.com/'
 var homeUrl = 'http://localhost:3000/'
+let deleteid;
+let objToDelete
 
 class QuestionCard extends Component {
 
@@ -49,7 +52,6 @@ class QuestionCard extends Component {
 
   componentDidMount () {
     this.getSolvedBy(this.props.question.id)
-    console.log('cardprops', this.props)
   }
 
   toggleFunction = () => {
@@ -64,7 +66,6 @@ class QuestionCard extends Component {
 
   closeSubmitModal() {
     this.setState({submitModalIsOpen: false});
-    window.location.assign(homeUrl + 'browselist/')
   }
 
   cancelDelete() {
@@ -77,7 +78,6 @@ class QuestionCard extends Component {
 
   submitSolver(event) {
     event.preventDefault();
-    console.log('submitted in the card')
     this.getSolvedBy(event);
     this.setState({submitModalIsOpen: false});
   }
@@ -92,32 +92,85 @@ class QuestionCard extends Component {
 
   deleteName(e) {
     e.preventDefault()
-    console.log('selected value:', this.state.selectedValue)
     this.onDelete(this.state.selectedValue, baseUrl + 'solvers/');
   }
 
   closeDeleteModal() {
     this.setState({deleteModalIsOpen: false});
-    console.log(this.value)
-    this.onDelete(this.props.question.id, baseUrl + 'questions/');
+    this.onDeleteQuestion(this.props.question.id, baseUrl + 'questions/');
   }
 
-  onDelete = (id, url) => {
-    console.log(id, url)
-  return fetch(url + id, {
-    method: 'delete',
-    headers: new Headers({
-      'Content-Type': 'application/json'
+  onDelete(id, url) {
+    return fetch(url + id, {
+      method: 'delete',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
     })
-  })
-  .then(res => {window.location.assign(homeUrl + 'deleted'); return res})
-  .then(data => {
-    if (!data) return console.error('no data on delete response');
-      this.setState({solvers: data})})
-  .then(console.log('great succes'))
+    .then(res => {window.location.assign(homeUrl + 'deleted'); return res})
+    .then(data => {
+      if (!data) return console.error('no data on delete response');
+        this.setState({solvers: data})})
+    .then(console.log('great succes'))
   }
 
+  onDeleteQuestion = (id, url) => {
+    console.log(id, url)
+    console.log('state', this.state)
+    console.log('props', this.props)
+    if (this.state.solvedBy.length > 0) {
+      this.state.solvedBy.forEach(item => (
+        this.props.solvers.forEach(solver => {
+          if (solver.solver_name === item.solver_name) {
+            deleteid = solver.id
+            console.log(deleteid)
+            objToDelete = this.props.questions_solvers.forEach(item => {
+                let qsolverid
+                if (item.questions_id === this.props.question.id && item.solvers_id === deleteid) {
+                  console.log('itemid', item.id)
+                  return fetch(baseUrl + 'questions_solvers/' + item.id, {
+                    method: 'delete',
+                    headers: new Headers({
+                      'Content-Type': 'application/json'
+                    })
+                  })
+                  .then(data => {
+                        if (!data) return console.error('no data on delete response');
+                          this.setState({solvers: data})})
+                  .then(console.log('great succes'))
+                  .then(() => { return fetch(url + id, {
+                      method: 'delete',
+                      headers: new Headers({
+                        'Content-Type': 'application/json'
+                      })
+                    })
+                    .then(res => {window.location.assign(homeUrl + 'deleted'); return res})
+                    .then(data => {
+                      if (!data) return console.error('no data on delete response');
+                        this.setState({solvers: data})})
+                    .then(console.log('great succes'))
+                  })
+                }
+            return deleteid
+          }
+        )}}
+      )))
+      console.log('objToDelete', objToDelete)
 
+    } else {
+      return fetch(url + id, {
+        method: 'delete',
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      })
+      .then(res => {window.location.assign(homeUrl + 'deleted'); return res})
+      .then(data => {
+        if (!data) return console.error('no data on delete response');
+          this.setState({solvers: data})})
+      .then(console.log('great succes'))
+    }
+  }
 
   closeUpdateModal() {
     this.setState({updateModalIsOpen: false});
@@ -132,9 +185,9 @@ class QuestionCard extends Component {
 
   createOptionsList (item, index) {
       return (
-        <option key={item.id} value={item.id}>
+        <Option key={item.id} value={item.id}>
           {item.solver_name}
-        </option>
+        </Option>
       );
   }
 
@@ -162,19 +215,27 @@ class QuestionCard extends Component {
 
     onSolverSubmit = (event) => {
       event.preventDefault()
-      const form = event.target;
-      const data = new FormData(form);
+      // const form = event.target;
+      // const data = new FormData(form);
       const questions_solvers = this.props.questions_solvers
       const question_solver = ({
-        "id": questions_solvers.length + 1,
+        "id": this.getId(questions_solvers),
         "questions_id": this.props.question.id,
         "solvers_id": parseInt(this.state.selectedValue)
       })
       console.log('object to submit', question_solver)
-      this.props.questions_solvers.push(question_solver)
-      console.log('array', this.props.questions_solvers)
       this.props.addSolvedBy(question_solver)
-      this.setState({ questions_solvers })
+    }
+
+    getId = (array) => {
+      let max = 0;
+      return array.forEach(item => {
+        console.log('item', item)
+        if (item.id > max) {
+          max = item.id
+          console.log('max', max)
+        }
+      });
     }
 
   render() {
@@ -216,35 +277,38 @@ class QuestionCard extends Component {
 
 
         <Modal
-          isOpen={this.state.submitModalIsOpen}
+          visible={this.state.submitModalIsOpen}
           onRequestClose={this.closeSubmitModal}
           contentLabel="Solved Modal"
+          onCancel={this.closeSubmitModal}
         >
         <h2 ref={subtitle => this.subtitle = subtitle}>What a champion!</h2>
         <form>
-          <select onChange={(e) => this.setState({selectedValue: e.target.value})} name="name">
+          <Select defaultValue='Choose your name' onChange={(value) => this.setState({selectedValue: value})} name="name">
             {this.props.solvers.map(this.createOptionsList)}
-          </select >
-          <Button onClick={this.onSolverSubmit}>Submit</Button>
-          <Button onClick={this.closeSubmitModal}>Cancel</Button>
+          </Select >
+          <Button type='primary' onClick={this.onSolverSubmit}>Submit</Button>
         </form>
         <form>
           <label>Don't see your name in the list? Add it:</label>
           <input type='text' name='newsolver' onChange={(e)=>{this.setState({newSolver: e.target.value}); console.log(this.state.newSolver)}}></input>
-          <Button onClick={()=>this.props.postName(this.state.newSolver)} type='submit' value='Add name'>Add Name</Button>
+          <Button className='addnamebtn' onClick={(e)=>this.props.postName(this.state.newSolver)} type='submit' value='Add name'>Add Name</Button>
         </form>
-        <form onSubmit={this.deleteName}>
+        <form id="deleteform" onSubmit={this.deleteName}>
           <label>Delete a person (cruel!):</label>
-          <select onChange={(e) => this.setState({selectedValue: e.target.value})} name="name" id="namelist">
+          <Select defaultValue='Pick a person' getPopupContainer={() => document.getElementById('deleteform')} onChange={(value) => this.setState({selectedValue: value})} name="name" id="namelist">
             {this.props.solvers.map(this.createOptionsList)}
-          </select >
+          </Select >
           <input id='delete' type='submit' value='Delete name forever and all the data that goes with it'/>
         </form>
         </Modal>
 
         <Modal
+          visible={this.state.deleteModalIsOpen}
           isOpen={this.state.deleteModalIsOpen}
-          onRequestClose={this.closeDeleteModal}
+          onRequestClose={this.cancelDelete}
+          onCancel={this.cancelDelete}
+          closable={false}
           contentLabel="Delete Modal"
         >
         <p>Are you sure you want to delete this question <strong>and all of the data </strong>that goes with it?</p>
@@ -253,8 +317,10 @@ class QuestionCard extends Component {
         </Modal>
 
         <Modal
+          visible={this.state.updateModalIsOpen}
           isOpen={this.state.updateModalIsOpen}
           onRequestClose={this.closeUpdateModal}
+          onCancel={this.closeUpdateModal}
           contentLabel="Update Modal"
         >
           <Button type="primary" onClick={this.cancelUpdate}>Cancel</Button>
