@@ -12,8 +12,8 @@ import { Icon } from 'antd'
 
 
 
-var baseUrl = 'http://beerboardapi.herokuapp.com/'
-var homeUrl = 'http://localhost:3000'
+var baseUrl = 'https://beerboardapi.herokuapp.com/'
+var homeUrl = 'https://beerboardingg70.firebaseapp.com'
 
 class App extends Component {
   state = {

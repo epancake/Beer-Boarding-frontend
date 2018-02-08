@@ -4,8 +4,8 @@ import { Button, Icon, Select, Modal } from 'antd';
 const Option = Select.Option;
 
 var Highlight = require('react-highlight');
-var baseUrl = 'http://beerboardapi.herokuapp.com/'
-var homeUrl = 'http://localhost:3000/'
+var baseUrl = 'https://beerboardapi.herokuapp.com/'
+var homeUrl = 'https://beerboardingg70.firebaseapp.com/browselist'
 let deleteid;
 let objToDelete
 

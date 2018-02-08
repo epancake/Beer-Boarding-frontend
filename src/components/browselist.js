@@ -1,6 +1,6 @@
 import React from 'react'
 import QuestionCard from './QuestionCard.js'
-const location = 'http://localhost:3001/browselist'
+const location = 'https://beerboardingg70.firebaseapp.com/browselist'
 
 const BrowseList = (props) => {
 
