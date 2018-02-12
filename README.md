@@ -1,9 +1,9 @@
 # Beer Boarding
 Javascript whiteboarding practice for champions!
 
-<!-- <div>
+<div>
   <img width="476" alt="screen shot" src="./public/BeerBoardScreenShot.png">
-</div> -->
+</div>
 
 ## App Description
 An app that empowers junior developers looking to practice white-boarding interview skills with their friends.
@@ -31,7 +31,7 @@ React, Express, Knex, Postgresql, Node, Ant Design, Cypress.
 
 ## Author
 Emily Pancake
-https://github.com/epancake
+[GitHub](https://github.com/epancake)
 [LinkedIn](www.linkedin.com/in/emilypancake/)
 
 # License
