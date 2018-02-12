@@ -2,8 +2,7 @@
 Javascript whiteboarding practice for champions!
 
 <!-- <div>
-  <img width="376" alt="screen shot 2018-02-09 at 11 12 13 am" src="https://user-images.githubusercontent.com/26422138/36042772-2b340722-0d8a-11e8-8f2b-458a57d564ec.png">
-  <img width="377" alt="screen shot 2018-02-09 at 11 15 07 am" src="https://user-images.githubusercontent.com/26422138/36042871-8c747fd0-0d8a-11e8-9a07-9642113869af.png">
+  <img width="476" alt="screen shot" src="./public/BeerBoardScreenShot.png">
 </div> -->
 
 ## App Description
@@ -33,7 +32,7 @@ React, Express, Knex, Postgresql, Node, Ant Design, Cypress.
 ## Author
 Emily Pancake
 https://github.com/epancake
-(linkedIn)[www.linkedin.com/in/emilypancake/]
+[LinkedIn](www.linkedin.com/in/emilypancake/)
 
 # License
 MIT
