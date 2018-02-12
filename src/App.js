@@ -31,9 +31,6 @@ class App extends Component {
           questions: data.questions,
           solvers: data.solvers,
           questions_solvers: data.questions_solvers});
-        console.log('questions', this.state.questions)
-        console.log('solvers', this.state.solvers)
-        console.log('questions_solvers', this.state.questions_solvers)
       });
   }
 
@@ -46,7 +43,7 @@ class App extends Component {
       'Content-Type': 'application/json'
     })
   }).then(res => res.json())
-  .then(res => {window.location.assign(homeUrl + '/success'); return res})
+  .then(res => {window.location.href='./success'; return res})
   .then(data =>{
       this.setState({questions: data})
       })
@@ -55,24 +52,19 @@ class App extends Component {
   }
 
   postName = (newsolver) => {
-    console.log('newsolver', newsolver)
     const solvers = this.state.solvers;
     const solver = ({
       "id": this.getId(solvers),
       "solver_name": newsolver,
     })
-    console.log(solver)
     this.addSolver(solver)
   }
 
   getId = (array) => {
     let max = 0;
     array.forEach(item => {
-      console.log('item', item)
       if (item.id > max) {
         max = item.id
-        console.log('max', max)
-
       }
     }); return max + 1
   }
@@ -86,7 +78,7 @@ class App extends Component {
       'Content-Type': 'application/json'
     })
   }).then(res => res.json())
-  .then(res => {window.location.assign(homeUrl + '/success'); return res})
+  .then(res => {window.location.href='./success'; return res})
   .then(data =>{
     if (!data) return console.error("add solver error");
       this.setState({solvers: data})})
@@ -96,7 +88,6 @@ class App extends Component {
 
   addSolvedBy = (questions_solver) => {
   var url = baseUrl + 'questions_solvers';
-  console.log('addsolvedby')
   fetch(url, {
     method: 'POST', // or 'PUT'
     body: JSON.stringify(questions_solver),
@@ -104,7 +95,7 @@ class App extends Component {
       'Content-Type': 'application/json'
     })
   }).then(res => res.json())
-  .then(res => {window.location.assign(homeUrl + '/success'); return res})
+  .then(res => {window.location.href='./success'; return res})
   .then(data =>{
     if (!data) return console.error("add solver error");
       this.setState({questions_solvers: data})})
@@ -131,7 +122,6 @@ class App extends Component {
     const form = event.target;
     const data = new FormData(form);
     const questions = this.state.questions
-    console.log('questions1', questions)
     const question = ({
       id: this.getId(questions),
       question_name: data.get('qname'),
@@ -139,18 +129,15 @@ class App extends Component {
       solution: data.get('solution'),
       submitter: data.get('submitter')
     })
-    console.log('submitted', question)
     this.addQuestion(question)
     this.setState({ questions })
   }
 
   onSubmitUpdate = (event) => {
-    console.log('onSubmitUpdate fired')
     event.preventDefault()
     const form = event.target;
     const data = new FormData(form);
     const questions = this.state.questions
-    console.log('questions1', questions)
     const question = ({
       "id": data.get('qid'),
       "question_name": data.get('qname'),
@@ -158,7 +145,6 @@ class App extends Component {
       "solution": data.get('solution'),
       "submitter": data.get('submitter')
     })
-    console.log('submitted', question)
     this.updateQuestion(question)
   }
 
@@ -171,7 +157,7 @@ class App extends Component {
         'Content-Type': 'application/json'
       })
     }).then(res => res.json())
-    .then(res => {window.location.assign(homeUrl + '/success'); return res})
+    .then(res => {window.location.href='./success'; return res})
     .catch(error => console.error('Error:', error))
     .then(response => console.log('Success:', response))
     .then(data =>{this.setState({questions: data})
@@ -183,7 +169,6 @@ class App extends Component {
     const form = event.target;
     const data = new FormData(form);
     const questions_solvers = this.state.questions_solvers
-    console.log('questions_solvers', questions_solvers)
     const question_solver = ({
       id: this.state.questions.questions.length + 1,
       question_id: data.get('qname'),
@@ -192,7 +177,7 @@ class App extends Component {
     questions_solvers.push(question_solver)
     this.addQuestion(question_solver)
     this.setState({ questions_solvers })
-    window.location.assign(homeUrl)
+    window.location.href = homeUrl
   }
 
   render() {
@@ -221,7 +206,7 @@ class App extends Component {
                   questions_solvers={this.state.questions_solvers}
                   addSolvedBy={this.addSolvedBy}
                   onSubmitUpdate={this.onSubmitUpdate} />} />
-                <Route path="/random" render={()=><RandomQ solvers={this.state.solvers}
+                <Route path="/random" render={()=><RandomQ key={this.state.questions.length} solvers={this.state.solvers}
                   questions={this.state.questions}
                   onQuestionSolverSubmit={this.onQuestionSolverSubmit}
                   postName={this.postName}

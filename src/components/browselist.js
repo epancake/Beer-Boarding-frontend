@@ -4,9 +4,6 @@ const location = 'https://beerboardingg70.firebaseapp.com/browselist'
 
 const BrowseList = (props) => {
 
-  setTimeout(window.location.reload.bind(location), 4000);
-
-
   if (!props.questions) {
     return <p>No data yet, one second please!!!</p>
   } else if (props.questions) {
@@ -23,7 +20,6 @@ const BrowseList = (props) => {
       addSolvedBy={props.addSolvedBy}
       onSubmitUpdate={props.onSubmitUpdate}/>
   })
-
 }
 
 export default BrowseList;

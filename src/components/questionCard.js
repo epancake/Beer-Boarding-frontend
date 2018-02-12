@@ -107,7 +107,7 @@ class QuestionCard extends Component {
         'Content-Type': 'application/json'
       })
     })
-    .then(res => {window.location.assign(homeUrl + 'deleted'); return res})
+    .then(res => {window.location.href = './deleted'; return res})
     .then(data => {
       if (!data) return console.error('no data on delete response');
         this.setState({solvers: data})})
@@ -137,7 +137,7 @@ class QuestionCard extends Component {
                         'Content-Type': 'application/json'
                       })
                     })
-                    .then(res => {window.location.assign(homeUrl + 'deleted'); return res})
+                    .then(res => {window.location.href = './deleted'; return res})
                     .then(data => {
                       if (!data) return console.error('no data on delete response');
                         this.setState({solvers: data})})
@@ -154,7 +154,7 @@ class QuestionCard extends Component {
           'Content-Type': 'application/json'
         })
       })
-      .then(res => {window.location.assign(homeUrl + 'deleted'); return res})
+      .then(res => {window.location.href = './deleted'; return res})
       .then(data => {
         if (!data) return console.error('no data on delete response');
           this.setState({solvers: data})})
@@ -296,7 +296,7 @@ class QuestionCard extends Component {
           contentLabel="Delete Modal"
         >
         <p>Are you sure you want to delete this question <strong>and all of the data </strong>that goes with it?</p>
-        <Button id='delete' type="danger" onClick={this.closeDeleteModal}>Delete!</Button>
+        <Button className='finalQdelete' id='delete' type="danger" onClick={this.closeDeleteModal}>Delete!</Button>
         <Button type="primary" onClick={this.cancelDelete}>Cancel</Button>
         </Modal>
 
