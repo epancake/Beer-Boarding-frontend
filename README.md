@@ -17,14 +17,14 @@ Beer Boarding is an app that allows users to input questions, generate a random 
 ## User Experience
 Users can toggle three views, 1) Add a question, 2) Browse questions list, 3) Generate a random question. That part is self explanatory.
 
-Additionally, users can toggle the solution so that it is hidden or visible. After a user soleves a question, they can be added to the overall solvers list and then added to the "Solved by" list on any given question.
+Additionally, users can toggle the solution so that it is hidden or visible. After a user solves a question, they can be added to the overall solvers list and then added to the "Solved by" list on any given question.
 
 Finally Questions can be updated and deleted. Users can also be deleted, although they cannot be deleted if they are in a "Solved by" list. This is by design so that no data is inadvertently lost.
 
 ## Installation Instructions
 Using the app only requires visiting the website, https://beerboardingg70.firebaseapp.com/.
 
-However, if you wish to download the app and make changes to better suit your personal needs, you will find the source code for the fronted in this repository, and the code for the backend at: https://github.com/epancake/Beer-Boarding-Backend. After forking over your desired repo and cloning it down to your computer, please ```npm install``` then happy hacking!
+However, if you wish to download the app and make changes to better suit your personal needs, you will find the source code for the front-end in this repository, and the code for the backend at: https://github.com/epancake/Beer-Boarding-Backend. After forking over your desired repo and cloning it down to your computer, please ```npm install``` then happy hacking!
 
 ## Technologies
 React, Express, Knex, Postgresql, Node, Ant Design, Cypress.
