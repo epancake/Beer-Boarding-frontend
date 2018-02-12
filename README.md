@@ -30,11 +30,11 @@ However, if you wish to download the app and make changes to better suit your pe
 React, Express, Knex, Postgresql, Node, Ant Design, Cypress.
 
 ## Author
-Emily Pancake
+Emily Pancake - Full Stack Web Developer
 
 [GitHub](https://github.com/epancake)
 
 [LinkedIn](www.linkedin.com/in/emilypancake/)
 
-# License
+## License
 MIT
