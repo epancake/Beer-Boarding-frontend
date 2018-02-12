@@ -31,7 +31,9 @@ React, Express, Knex, Postgresql, Node, Ant Design, Cypress.
 
 ## Author
 Emily Pancake
+
 [GitHub](https://github.com/epancake)
+
 [LinkedIn](www.linkedin.com/in/emilypancake/)
 
 # License
