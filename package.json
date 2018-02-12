@@ -23,5 +23,8 @@
   },
   "theme": {
     "primary-color": "#1DA57A"
+  },
+  "devDependencies": {
+    "cypress": "^1.4.2"
   }
 }

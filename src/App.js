@@ -67,13 +67,14 @@ class App extends Component {
 
   getId = (array) => {
     let max = 0;
-    return array.forEach(item => {
+    array.forEach(item => {
       console.log('item', item)
       if (item.id > max) {
         max = item.id
         console.log('max', max)
+
       }
-    });
+    }); return max + 1
   }
 
   addSolver = (solver) => {
@@ -132,7 +133,7 @@ class App extends Component {
     const questions = this.state.questions
     console.log('questions1', questions)
     const question = ({
-      id: questions.length + 1,
+      id: this.getId(questions),
       question_name: data.get('qname'),
       question: data.get('qtext'),
       solution: data.get('solution'),

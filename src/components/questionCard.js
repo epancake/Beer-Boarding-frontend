@@ -5,7 +5,7 @@ const Option = Select.Option;
 
 var Highlight = require('react-highlight');
 var baseUrl = 'https://beerboardapi.herokuapp.com/'
-var homeUrl = 'https://beerboardingg70.firebaseapp.com/browselist'
+var homeUrl = 'https://beerboardingg70.firebaseapp.com'
 let deleteid;
 let objToDelete
 
@@ -111,23 +111,17 @@ class QuestionCard extends Component {
     .then(data => {
       if (!data) return console.error('no data on delete response');
         this.setState({solvers: data})})
-    .then(console.log('great succes'))
   }
 
   onDeleteQuestion = (id, url) => {
-    console.log(id, url)
-    console.log('state', this.state)
-    console.log('props', this.props)
     if (this.state.solvedBy.length > 0) {
       this.state.solvedBy.forEach(item => (
         this.props.solvers.forEach(solver => {
           if (solver.solver_name === item.solver_name) {
             deleteid = solver.id
-            console.log(deleteid)
             objToDelete = this.props.questions_solvers.forEach(item => {
                 let qsolverid
                 if (item.questions_id === this.props.question.id && item.solvers_id === deleteid) {
-                  console.log('itemid', item.id)
                   return fetch(baseUrl + 'questions_solvers/' + item.id, {
                     method: 'delete',
                     headers: new Headers({
@@ -137,7 +131,6 @@ class QuestionCard extends Component {
                   .then(data => {
                         if (!data) return console.error('no data on delete response');
                           this.setState({solvers: data})})
-                  .then(console.log('great succes'))
                   .then(() => { return fetch(url + id, {
                       method: 'delete',
                       headers: new Headers({
@@ -148,15 +141,12 @@ class QuestionCard extends Component {
                     .then(data => {
                       if (!data) return console.error('no data on delete response');
                         this.setState({solvers: data})})
-                    .then(console.log('great succes'))
                   })
                 }
             return deleteid
           }
         )}}
       )))
-      console.log('objToDelete', objToDelete)
-
     } else {
       return fetch(url + id, {
         method: 'delete',
@@ -168,7 +158,6 @@ class QuestionCard extends Component {
       .then(data => {
         if (!data) return console.error('no data on delete response');
           this.setState({solvers: data})})
-      .then(console.log('great succes'))
     }
   }
 
@@ -180,7 +169,6 @@ class QuestionCard extends Component {
 
   handleChange (e) {
       this.setState({selectedValue: e.target.value})
-      console.log('hi', e.target.value)
     }
 
   createOptionsList (item, index) {
@@ -200,7 +188,6 @@ class QuestionCard extends Component {
   }
 
   getSolvedBy (questionId) {
-    console.log('fetching solvers')
     var url = baseUrl + 'solvedby/' + questionId;
     fetch(url)
       .then(res => res.json())
@@ -223,17 +210,14 @@ class QuestionCard extends Component {
         "questions_id": this.props.question.id,
         "solvers_id": parseInt(this.state.selectedValue)
       })
-      console.log('object to submit', question_solver)
       this.props.addSolvedBy(question_solver)
     }
 
     getId = (array) => {
       let max = 0;
       return array.forEach(item => {
-        console.log('item', item)
         if (item.id > max) {
           max = item.id
-          console.log('max', max)
         }
       });
     }
@@ -291,7 +275,7 @@ class QuestionCard extends Component {
         </form>
         <form>
           <label>Don't see your name in the list? Add it:</label>
-          <input type='text' name='newsolver' onChange={(e)=>{this.setState({newSolver: e.target.value}); console.log(this.state.newSolver)}}></input>
+          <input type='text' name='newsolver' onChange={(e)=>{this.setState({newSolver: e.target.value})}}></input>
           <Button className='addnamebtn' onClick={(e)=>this.props.postName(this.state.newSolver)} type='submit' value='Add name'>Add Name</Button>
         </form>
         <form id="deleteform" onSubmit={this.deleteName}>
