@@ -48,7 +48,6 @@ class App extends Component {
       this.setState({questions: data})
       })
   .catch(error => console.error('Error:', error))
-  .then(response => console.log('Success:', response))
   }
 
   postName = (newsolver) => {
@@ -83,7 +82,6 @@ class App extends Component {
     if (!data) return console.error("add solver error");
       this.setState({solvers: data})})
   .catch(error => console.error('Error:', error))
-  .then(response => console.log('Success:', response));
   }
 
   addSolvedBy = (questions_solver) => {
@@ -99,7 +97,6 @@ class App extends Component {
   .then(data =>{
     if (!data) return console.error("add solver error");
       this.setState({questions_solvers: data})})
-  .then(response => console.log('Success:', response))
   .catch(error => console.error('Error:', error))
 
   }
@@ -114,7 +111,6 @@ class App extends Component {
     })
   }).then(res => res.json())
   .catch(error => console.error('Error:', error))
-  .then(response => console.log('Success:', response));
   }
 
   onSubmit = (event) => {
@@ -159,7 +155,6 @@ class App extends Component {
     }).then(res => res.json())
     .then(res => {window.location.href='./success'; return res})
     .catch(error => console.error('Error:', error))
-    .then(response => console.log('Success:', response))
     .then(data =>{this.setState({questions: data})
     })
   }
@@ -187,7 +182,7 @@ class App extends Component {
         <Router >
           <div>
             <Link to="/browselist">
-              <Button className='navbtn' >Browse Questions <Icon type="bars" /></Button>
+              <Button id='navbtn' >Browse Questions <Icon type="bars" /></Button>
             </Link>
             <Link to="/random">
               <Button>Random Question <Icon type="question-circle-o" /></Button>
