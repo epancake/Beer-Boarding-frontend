@@ -1,5 +1,8 @@
 # Beer Boarding
 Javascript whiteboarding practice for champions!
+[Deployed Frontend Link](https://beerboardingg70.firebaseapp.com/)
+[Backend Repo Link](https://github.com/epancake/Beer-Boarding-Backend)
+[Deployed Backend Link](http://beerboardapi.herokuapp.com/)
 
 <div>
   <img width="476" alt="screen shot" src="./public/BeerBoardScreenShot.png">
