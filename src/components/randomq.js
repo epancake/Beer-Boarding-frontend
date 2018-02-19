@@ -17,6 +17,13 @@ const RandomQ = (props) => {
   const question = questions[rindex]
   console.log('finalSingleQ', question)
 
-  return <QuestionCard key={question.id} question={question} solvers={props.solvers} postName={props.postName}/>
+  return <QuestionCard key={question.id + question.name}
+    question={question}
+    solvers={props.solvers}
+    questions_solvers={props.questions_solvers}
+    onSolverSubmit={props.onSolverSubmit}
+    postName={props.postName}
+    addSolvedBy={props.addSolvedBy}
+    onSubmitUpdate={props.onSubmitUpdate}/>
 }
 export default RandomQ;

@@ -228,8 +228,8 @@ select {
   background-image: url("./components/beer1_10.jpg");
   height: 5000px;
   background-attachment: fixed;
-  background-position: -2rem -.5rem;
-  background-repeat: repeat-y;
+  background-position: -6rem -1rem;
+  background-repeat: no-repeat;
   background-size: auto;
   overflow: hidden,
   padd

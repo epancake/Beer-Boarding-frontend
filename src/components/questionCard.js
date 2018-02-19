@@ -205,8 +205,9 @@ class QuestionCard extends Component {
       // const form = event.target;
       // const data = new FormData(form);
       const questions_solvers = this.props.questions_solvers
+      console.log("qs", questions_solvers)
       const question_solver = ({
-        "id": this.getId(questions_solvers),
+        "id": this.getId(this.props.questions_solvers),
         "questions_id": this.props.question.id,
         "solvers_id": parseInt(this.state.selectedValue)
       })
@@ -215,6 +216,7 @@ class QuestionCard extends Component {
 
     getId = (array) => {
       let max = 0;
+      console.log(array)
       return array.forEach(item => {
         if (item.id > max) {
           max = item.id
@@ -225,11 +227,11 @@ class QuestionCard extends Component {
   render() {
 
     let solvedByName = this.state.solvedBy.map(person => {
-      return <span className='solvedbyitem'><br/>{person.solver_name}</span>
+      return <span key={person.solver_name} className='solvedbyitem'><br/>{person.solver_name}</span>
     })
 
     let solvedById = this.state.solvedBy.map(person => {
-      return <span className='solvedbyitem'><br/>{person.id}</span>
+      return <span key={person.id} className='solvedbyitem'><br/>{person.id}</span>
     })
 
 
@@ -241,9 +243,9 @@ class QuestionCard extends Component {
           <div className="card-body">
             <div className='cardtext'>
               <div id='questionText'><strong>Question:</strong><br></br>{this.props.question.question.split("\n").map((i, index)=> {
-            return <div key={i.length + index}>{i}</div>;})}</div>
+            return <div key={Math.random()}>{i}</div>;})}</div>
               <div id='solutionText' onClick={this.toggleFunction}><strong>Solution:</strong> <span className='clicktext'>Click to show.</span><br></br><span className={this.state.toggleClass?'hidden':''}>{this.props.question.solution.split("\n").map((i, index) => {
-            return <div key={i.length + index}>{i}</div>;})}</span></div>
+            return <div key={Math.random()}>{i}</div>;})}</span></div>
               <p id='submitText'><strong>Submitted by:</strong> {this.props.question.submitter}</p>
               <p id='solverText'><strong>Solved by:</strong>{solvedByName}</p>
             </div>
