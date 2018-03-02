@@ -14,7 +14,7 @@ const RandomQ = (props) => {
 
   const question = questions[rindex]
 
-  return <QuestionCard key={question.id + question.name}
+  return <QuestionCard key={question.id}
     question={question}
     solvers={props.solvers}
     questions_solvers={props.questions_solvers}

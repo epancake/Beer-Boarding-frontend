@@ -205,7 +205,6 @@ class QuestionCard extends Component {
       // const form = event.target;
       // const data = new FormData(form);
       const questions_solvers = this.props.questions_solvers
-      console.log("qs", questions_solvers)
       const question_solver = ({
         "id": this.getId(this.props.questions_solvers),
         "questions_id": this.props.question.id,
@@ -216,7 +215,6 @@ class QuestionCard extends Component {
 
     getId = (array) => {
       let max = 0;
-      console.log(array)
       return array.forEach(item => {
         if (item.id > max) {
           max = item.id

@@ -11,7 +11,7 @@ const BrowseList = (props) => {
   }
 
   return props.questions.map((question) => {
-    return <QuestionCard key={question.id + question.name}
+    return <QuestionCard key={question.id}
       question={question}
       solvers={props.solvers}
       questions_solvers={props.questions_solvers}

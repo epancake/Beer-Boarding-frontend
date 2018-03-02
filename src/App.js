@@ -192,7 +192,7 @@ class App extends Component {
             </Link>
             <div className='parallax'>
               <div>
-                <Route path="/browselist" render={()=><BrowseList key="questionslist" solvers={this.state.solvers}
+                <Route path="/browselist" render={()=><BrowseList key={456} solvers={this.state.solvers}
                   questions={this.state.questions}
                   onQuestionSolverSubmit={this.onQuestionSolverSubmit}
                   postName={this.postName}
