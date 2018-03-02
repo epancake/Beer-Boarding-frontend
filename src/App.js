@@ -29,9 +29,19 @@ class App extends Component {
       .then(data => {
         this.setState({
           questions: data.questions,
-          solvers: data.solvers,
-          questions_solvers: data.questions_solvers});
-      });
+          solvers: data.solvers.sort(function(a, b) {
+            var nameA = a.solver_name.toUpperCase();
+            var nameB = b.solver_name.toUpperCase();
+              if (nameA < nameB) {
+                return -1;
+              }
+              if (nameA > nameB) {
+                return 1;
+              }
+              return 0;
+        }),
+        questions_solvers: data.questions_solvers
+      })});
   }
 
   addQuestion = (question) => {

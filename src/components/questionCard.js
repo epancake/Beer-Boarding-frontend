@@ -47,11 +47,13 @@ class QuestionCard extends Component {
   this.submitSolver = this.submitSolver.bind(this);
   this.getSolvedBy = this.getSolvedBy.bind(this);
   this.onSolverSubmit = this.onSolverSubmit.bind(this);
+  this.deleteBoth = this.deleteBoth.bind(this);
 
   }
 
   componentDidMount () {
     this.getSolvedBy(this.props.question.id)
+    console.log("this.props.questions_solvers", this.props.questions_solvers)
   }
 
   toggleFunction = () => {
@@ -60,6 +62,7 @@ class QuestionCard extends Component {
 
   openSubmitModal() {
     this.setState({submitModalIsOpen: true});
+
     this.setState({solvers_here: this.props.solvers.map(
       item => item.solver_name)})
   }
@@ -115,38 +118,8 @@ class QuestionCard extends Component {
 
   onDeleteQuestion = (id, url) => {
     if (this.state.solvedBy.length > 0) {
-      this.state.solvedBy.forEach(item => (
-        this.props.solvers.forEach(solver => {
-          if (solver.solver_name === item.solver_name) {
-            deleteid = solver.id
-            objToDelete = this.props.questions_solvers.forEach(item => {
-                let qsolverid
-                if (item.questions_id === this.props.question.id && item.solvers_id === deleteid) {
-                  return fetch(baseUrl + 'questions_solvers/' + item.id, {
-                    method: 'delete',
-                    headers: new Headers({
-                      'Content-Type': 'application/json'
-                    })
-                  })
-                  .then(data => {
-                        if (!data) return console.error('no data on delete response');
-                          this.setState({solvers: data})})
-                  .then(() => { return fetch(url + id, {
-                      method: 'delete',
-                      headers: new Headers({
-                        'Content-Type': 'application/json'
-                      })
-                    })
-                    .then(res => {window.location.href = './deleted'; return res})
-                    .then(data => {
-                      if (!data) return console.error('no data on delete response');
-                        this.setState({solvers: data})})
-                  })
-                }
-            return deleteid
-          }
-        )}}
-      )))
+      this.state.solvedBy.forEach(item => {
+      this.deleteBoth(item, id, url)})
     } else {
       return fetch(url + id, {
         method: 'delete',
@@ -160,6 +133,42 @@ class QuestionCard extends Component {
           this.setState({solvers: data})})
     }
   }
+
+  deleteBoth(item, id, url) {
+    console.log('item', item);
+    console.log('this.props.solvers', this.props.solvers);
+    this.props.solvers.forEach(solver => {
+      if (solver.solver_name === item.solver_name) {
+        deleteid = solver.id
+        this.props.questions_solvers.forEach(item => {
+            if (item.questions_id === this.props.question.id && item.solvers_id === deleteid) {
+              return fetch(baseUrl + 'questions_solvers/' + item.id, {
+                method: 'delete',
+                headers: new Headers({
+                  'Content-Type': 'application/json'
+                })
+              })
+              .then(data => {
+                    if (!data) return console.error('no data on delete response');
+                      this.setState({solvers: data})})
+              .then(() => { return fetch(url + id, {
+                  method: 'delete',
+                  headers: new Headers({
+                    'Content-Type': 'application/json'
+                  })
+                })
+                .then(res => {window.location.href = './deleted'; return res})
+                .then(data => {
+                  if (!data) return console.error('no data on delete response');
+                    this.setState({solvers: data})})
+              })
+            }
+        return deleteid
+      }
+    )}}
+  )
+  }
+
 
   closeUpdateModal() {
     this.setState({updateModalIsOpen: false});
@@ -191,6 +200,7 @@ class QuestionCard extends Component {
     var url = baseUrl + 'solvedby/' + questionId;
     fetch(url)
       .then(res => res.json())
+      .then(res => {console.log('solvers', res); return res})
       .then(res => {
         this.setState({
           solvedBy: res.solvers
@@ -198,29 +208,29 @@ class QuestionCard extends Component {
       })
       .catch(error => console.error('Error:', error))
       .then(response => console.log('Success:', response))
-    }
+  }
 
-    onSolverSubmit = (event) => {
-      event.preventDefault()
-      // const form = event.target;
-      // const data = new FormData(form);
-      const questions_solvers = this.props.questions_solvers
-      const question_solver = ({
-        "id": this.getId(this.props.questions_solvers),
-        "questions_id": this.props.question.id,
-        "solvers_id": parseInt(this.state.selectedValue)
-      })
-      this.props.addSolvedBy(question_solver)
-    }
+  onSolverSubmit = (event) => {
+    event.preventDefault()
+    // const form = event.target;
+    // const data = new FormData(form);
+    const questions_solvers = this.props.questions_solvers
+    const question_solver = ({
+      "id": this.getId(this.props.questions_solvers),
+      "questions_id": this.props.question.id,
+      "solvers_id": parseInt(this.state.selectedValue)
+    })
+    this.props.addSolvedBy(question_solver)
+  }
 
-    getId = (array) => {
-      let max = 0;
-      return array.forEach(item => {
-        if (item.id > max) {
-          max = item.id
-        }
-      });
-    }
+  getId = (array) => {
+    let max = 0;
+    return array.forEach(item => {
+      if (item.id > max) {
+        max = item.id
+      }
+    });
+  }
 
   render() {
 
