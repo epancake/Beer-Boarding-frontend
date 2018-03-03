@@ -252,8 +252,8 @@ class QuestionCard extends Component {
             <div className='cardtext'>
               <div id='questionText'><strong>Question:</strong><br></br>{this.props.question.question.split("\n").map((i, index)=> {
             return <div key={Math.random()}>{i}</div>;})}</div>
-              <div id='solutionText' onClick={this.toggleFunction}><strong>Solution:</strong> <span className='clicktext'>Click to show.</span><br></br><span className={this.state.toggleClass?'hidden':''}>{this.props.question.solution.split("\n").map((i, index) => {
-            return <div key={Math.random()}>{i}</div>;})}</span></div>
+              <div id='solutionText' ><strong>Solution:</strong> <span onClick={this.toggleFunction} className='clicktext'>Click to show/hide.</span><br></br><span className={this.state.toggleClass?'hidden solutionLine':'solutionLine'}>{this.props.question.solution.split("/n").map((i, index) => {
+            return <pre key={Math.random()}>{i}</pre>;})}</span></div>
               <p id='submitText'><strong>Submitted by:</strong> {this.props.question.submitter}</p>
               <p id='solverText'><strong>Solved by:</strong>{solvedByName}</p>
             </div>
@@ -317,9 +317,8 @@ class QuestionCard extends Component {
           onCancel={this.closeUpdateModal}
           contentLabel="Update Modal"
         >
-          <Button type="primary" onClick={this.cancelUpdate}>Cancel</Button>
           <h3>Update the question</h3>
-          <p>Fill in all the fields and the question will be updated. If you leave any fields blank, the question will be blank too.</p>
+          <p className='updateInstr'>Fill in all the fields and the question will be updated.</p>
           <form className='addform' id='form' onSubmit={this.props.onSubmitUpdate}>
             <label className='add qid-label hidden' htmlFor="qid">Question ID:</label>
             <input className='add qid-field hidden' type="text" name="qid" defaultValue={this.state.formData.id}></input>

@@ -221,6 +221,7 @@ select {
 .clicktext {
   color: rgb(14, 67, 227);
   text-decoration: underline;
+  padding-bottom: 1rem;
 }
 
 
@@ -278,4 +279,16 @@ form {
 
 .ant-modal-footer {
   display: none
+}
+
+.solutionLine pre {
+  padding: 0rem;
+}
+
+pre {
+  margin-bottom: 0rem
+}
+
+.updateInstr {
+  margin-right: 5rem;
 }
