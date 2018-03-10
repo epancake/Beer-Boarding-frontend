@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function Form({ onSubmit }) {
+  
     return  (
       <form className='addform' id='form' onSubmit={onSubmit}>
         <label className='add qname-label' htmlFor="qname">Question Name:</label>

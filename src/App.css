@@ -54,6 +54,12 @@ h2 {
 .cardbuttons {
   grid-column: 3 / 4;
   grid-row: 2 / 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardbuttons button {
+  width: 7rem;
 }
 
 .cardtext {

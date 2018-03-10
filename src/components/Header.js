@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './beerlogo.png';
 
 class Header extends Component {
+  
   render() {
     return (
       <div className="App-header">

@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import Header from './components/Header.js'
 import Success from './components/Success.js'
 import Deleted from './components/Delete.js'
-import BrowseList from './components/Browselist.js'
+import BrowseList from './components/BrowseList.js'
 import RandomQ from './components/Randomq.js'
 import Form from './components/Form.js'
 import { Button } from 'antd'
@@ -12,8 +12,8 @@ import { Icon } from 'antd'
 
 
 
-var baseUrl = 'https://beerboardapi.herokuapp.com/'
-var homeUrl = 'https://beerboardingg70.firebaseapp.com'
+const baseUrl = 'https://beerboardapi.herokuapp.com/'
+const homeUrl = 'https://beerboardingg70.firebaseapp.com'
 
 class App extends Component {
   state = {
@@ -30,8 +30,8 @@ class App extends Component {
         this.setState({
           questions: data.questions,
           solvers: data.solvers.sort(function(a, b) {
-            var nameA = a.solver_name.toUpperCase();
-            var nameB = b.solver_name.toUpperCase();
+            let nameA = a.solver_name.toUpperCase();
+            let nameB = b.solver_name.toUpperCase();
               if (nameA < nameB) {
                 return -1;
               }
@@ -45,9 +45,9 @@ class App extends Component {
   }
 
   addQuestion = (question) => {
-  var url = baseUrl + 'questions';
+  let url = baseUrl + 'questions';
   fetch(url, {
-    method: 'POST', // or 'PUT'
+    method: 'POST',
     body: JSON.stringify(question),
     headers: new Headers({
       'Content-Type': 'application/json'
@@ -79,9 +79,9 @@ class App extends Component {
   }
 
   addSolver = (solver) => {
-  var url = baseUrl + 'solvers';
+  let url = baseUrl + 'solvers';
   fetch(url, {
-    method: 'POST', // or 'PUT'
+    method: 'POST',
     body: JSON.stringify(solver),
     headers: new Headers({
       'Content-Type': 'application/json'
@@ -95,9 +95,9 @@ class App extends Component {
   }
 
   addSolvedBy = (questions_solver) => {
-  var url = baseUrl + 'questions_solvers';
+  let url = baseUrl + 'questions_solvers';
   fetch(url, {
-    method: 'POST', // or 'PUT'
+    method: 'POST',
     body: JSON.stringify(questions_solver),
     headers: new Headers({
       'Content-Type': 'application/json'
@@ -112,9 +112,9 @@ class App extends Component {
   }
 
   addQuestionSolved = (question) => {
-  var url = baseUrl + 'questions_solvers';
+  let url = baseUrl + 'questions_solvers';
   fetch(url, {
-    method: 'POST', // or 'PUT'
+    method: 'POST',
     body: JSON.stringify(question),
     headers: new Headers({
       'Content-Type': 'application/json'
@@ -155,9 +155,9 @@ class App extends Component {
   }
 
   updateQuestion = (question) => {
-    var url = baseUrl + 'questions/' + question.id;
+    let url = baseUrl + 'questions/' + question.id;
     fetch(url, {
-      method: 'PUT', // or 'PUT'
+      method: 'PUT', 
       body: JSON.stringify(question),
       headers: new Headers({
         'Content-Type': 'application/json'

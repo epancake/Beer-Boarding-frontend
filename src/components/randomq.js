@@ -6,12 +6,11 @@ import QuestionCard from './QuestionCard'
 const RandomQ = (props) => {
   const questions = props.questions
   const randomid = () => {
-    var rindex = Math.floor(Math.random() * (questions.length));
+    let rindex = Math.floor(Math.random() * (questions.length));
     return rindex
   }
 
   const rindex = randomid()
-
   const question = questions[rindex]
 
   return <QuestionCard key={question.id}

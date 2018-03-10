@@ -7,6 +7,5 @@ export default function Success() {
         <Icon type="check-circle" />
         <h2>Submitted!</h2>
       </div>
-
     )
 }

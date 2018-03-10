@@ -2,6 +2,7 @@ import React from 'react'
 import { Icon } from 'antd'
 
 export default function Deleted() {
+  
     return  (
       <div>
         <Icon type="close-circle" />

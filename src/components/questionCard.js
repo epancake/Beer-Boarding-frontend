@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { Button, Icon, Select, Modal } from 'antd';
 
 const Option = Select.Option;
-
-var Highlight = require('react-highlight');
-var baseUrl = 'https://beerboardapi.herokuapp.com/'
-var homeUrl = 'https://beerboardingg70.firebaseapp.com'
+const Highlight = require('react-highlight');
+const baseUrl = 'https://beerboardapi.herokuapp.com/'
+const homeUrl = 'https://beerboardingg70.firebaseapp.com'
 let deleteid;
 let objToDelete
 
@@ -27,12 +26,6 @@ class QuestionCard extends Component {
     newSolver: ""
   };
 
-  // const names = () => {
-  //   return this.props.solvers.filter(
-  //     item => item.solver_name
-  //   )
-  // }
-
   this.openSubmitModal = this.openSubmitModal.bind(this);
   this.closeSubmitModal = this.closeSubmitModal.bind(this);
   this.openDeleteModal = this.openDeleteModal.bind(this);
@@ -48,7 +41,6 @@ class QuestionCard extends Component {
   this.getSolvedBy = this.getSolvedBy.bind(this);
   this.onSolverSubmit = this.onSolverSubmit.bind(this);
   this.deleteBoth = this.deleteBoth.bind(this);
-
   }
 
   componentDidMount () {
@@ -62,7 +54,6 @@ class QuestionCard extends Component {
 
   openSubmitModal() {
     this.setState({submitModalIsOpen: true});
-
     this.setState({solvers_here: this.props.solvers.map(
       item => item.solver_name)})
   }
@@ -135,8 +126,6 @@ class QuestionCard extends Component {
   }
 
   deleteBoth(item, id, url) {
-    console.log('item', item);
-    console.log('this.props.solvers', this.props.solvers);
     this.props.solvers.forEach(solver => {
       if (solver.solver_name === item.solver_name) {
         deleteid = solver.id
@@ -169,12 +158,9 @@ class QuestionCard extends Component {
   )
   }
 
-
   closeUpdateModal() {
     this.setState({updateModalIsOpen: false});
   }
-
-
 
   handleChange (e) {
       this.setState({selectedValue: e.target.value})
@@ -188,16 +174,8 @@ class QuestionCard extends Component {
       );
   }
 
-  getOptionId (item, index) {
-      return (
-        <option key={item.id} value={item.id}>
-          {item.id}
-        </option>
-      );
-  }
-
   getSolvedBy (questionId) {
-    var url = baseUrl + 'solvedby/' + questionId;
+    let url = baseUrl + 'solvedby/' + questionId;
     fetch(url)
       .then(res => res.json())
       .then(res => {console.log('solvers', res); return res})
@@ -212,8 +190,6 @@ class QuestionCard extends Component {
 
   onSolverSubmit = (event) => {
     event.preventDefault()
-    // const form = event.target;
-    // const data = new FormData(form);
     const questions_solvers = this.props.questions_solvers
     const question_solver = ({
       "id": this.getId(this.props.questions_solvers),
