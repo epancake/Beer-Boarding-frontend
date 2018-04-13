@@ -1,8 +1,10 @@
 import React from 'react'
+import Footer from './Footer.js'
 
 export default function Form({ onSubmit }) {
-  
+
     return  (
+      <div>
       <form className='addform' id='form' onSubmit={onSubmit}>
         <label className='add qname-label' htmlFor="qname">Question Name:</label>
         <input className='add qname-field' type="text" name="qname"></input>
@@ -14,5 +16,7 @@ export default function Form({ onSubmit }) {
         <input className='add subm-text' type="text" name="submitter"></input>
         <input className='add addqbutn' type="submit" value="Submit"/>
       </form>
+      <Footer/>
+      </div>
     )
 }

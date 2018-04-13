@@ -1,7 +1,6 @@
 import React from 'react'
 import QuestionCard from './QuestionCard'
-
-
+import Footer from './Footer.js'
 
 const RandomQ = (props) => {
   const questions = props.questions
@@ -13,13 +12,18 @@ const RandomQ = (props) => {
   const rindex = randomid()
   const question = questions[rindex]
 
-  return <QuestionCard key={question.id}
-    question={question}
-    solvers={props.solvers}
-    questions_solvers={props.questions_solvers}
-    onSolverSubmit={props.onSolverSubmit}
-    postName={props.postName}
-    addSolvedBy={props.addSolvedBy}
-    onSubmitUpdate={props.onSubmitUpdate}/>
+  return (
+    <div>
+      <QuestionCard key={question.id}
+        question={question}
+        solvers={props.solvers}
+        questions_solvers={props.questions_solvers}
+        onSolverSubmit={props.onSolverSubmit}
+        postName={props.postName}
+        addSolvedBy={props.addSolvedBy}
+        onSubmitUpdate={props.onSubmitUpdate}/>
+      <Footer/>
+    </div>
+  )
 }
 export default RandomQ;

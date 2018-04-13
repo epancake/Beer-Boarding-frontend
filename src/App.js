@@ -7,6 +7,8 @@ import Deleted from './components/Delete.js'
 import BrowseList from './components/BrowseList.js'
 import RandomQ from './components/Randomq.js'
 import Form from './components/Form.js'
+import Footer from './components/Footer.js'
+import Home from './components/Home.js'
 import { Button } from 'antd'
 import { Icon } from 'antd'
 
@@ -16,6 +18,7 @@ const baseUrl = 'https://beerboardapi.herokuapp.com/'
 const homeUrl = 'https://beerboardingg70.firebaseapp.com'
 
 class App extends Component {
+
   state = {
     questions: [],
     solvers: [],
@@ -157,7 +160,7 @@ class App extends Component {
   updateQuestion = (question) => {
     let url = baseUrl + 'questions/' + question.id;
     fetch(url, {
-      method: 'PUT', 
+      method: 'PUT',
       body: JSON.stringify(question),
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -201,7 +204,8 @@ class App extends Component {
               <Button>Add a Question <Icon type="plus-square-o" /></Button>
             </Link>
             <div className='parallax'>
-              <div>
+              <div className="bodyDiv">
+                <Route exact path="/" render={()=><Home/>}/>
                 <Route path="/browselist" render={()=><BrowseList key={456} solvers={this.state.solvers}
                   questions={this.state.questions}
                   onQuestionSolverSubmit={this.onQuestionSolverSubmit}
@@ -225,6 +229,7 @@ class App extends Component {
                 <Route path="/deleted" render={()=><Deleted/>} />
             </div>
             </div>
+
           </div>
         </Router>
       </div>

@@ -269,7 +269,7 @@ class QuestionCard extends Component {
           <Select defaultValue='Pick a person' getPopupContainer={() => document.getElementById('deleteform')} onChange={(value) => this.setState({selectedValue: value})} name="name" id="namelist">
             {this.props.solvers.map(this.createOptionsList)}
           </Select >
-          <input id='delete' type='submit' value='Delete name forever and all the data that goes with it'/>
+          <input id='delete' type='submit' value='Delete name forever'/>
         </form>
         </Modal>
 
