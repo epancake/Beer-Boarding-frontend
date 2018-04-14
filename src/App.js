@@ -198,10 +198,10 @@ class App extends Component {
               <Button id='navbtn' >Browse Questions <Icon type="bars" /></Button>
             </Link>
             <Link to="/random">
-              <Button>Random Question <Icon type="question-circle-o" /></Button>
+              <Button id='navbtn' >Random Question <Icon type="question-circle-o" /></Button>
             </Link>
             <Link to="/add">
-              <Button>Add a Question <Icon type="plus-square-o" /></Button>
+              <Button id='navbtn' >Add a Question <Icon type="plus-square-o" /></Button>
             </Link>
             <div className='parallax'>
               <div className="bodyDiv">
