@@ -17,7 +17,7 @@ class Home extends Component {
             <Card
               hoverable
               style={{ width: 250 }}
-              cover={<img alt="example" src="./JamesMannPhoto.png" />}
+              cover={<img alt="James" src="./JamesMannPhoto.png" />}
               className="founderCard"
             >
               <Meta
@@ -30,8 +30,8 @@ class Home extends Component {
                 <p className="foundertagline">Musician</p>
               </div>              <a className="portfolioSite" href="https://jamesmann.tech/">jamesmann.tech</a>
               <div className="contactsDiv">
-                <a className="contactLink" href="https://github.com/mrsaxmannjr"><img className="icon" src="./004-circle.png"/></a>
-                <a className="contactLink" href="https://www.linkedin.com/in/mrsaxmannjr/"><img className="icon" src="./003-symbol.png"/></a>
+                <a className="contactLink" href="https://github.com/mrsaxmannjr"><img alt="Github" className="icon" src="./004-circle.png"/></a>
+                <a className="contactLink" href="https://www.linkedin.com/in/mrsaxmannjr/"><img alt="linked in" className="icon" src="./003-symbol.png"/></a>
               </div>
               <p className="quote">"You have to become one with the board."</p>
             </Card>
@@ -51,8 +51,8 @@ class Home extends Component {
               </div>
               <a className="portfolioSite" href="https://emilypancake.com/">emilypancake.com</a>
               <div className="contactsDiv">
-                <a className="contactLink" href="https://github.com/epancake"><img className="icon" src="./004-circle.png"/></a>
-                <a className="contactLink" href="https://www.linkedin.com/in/emilypancake/"><img className="icon" src="./003-symbol.png"/></a>
+                <a className="contactLink" href="https://github.com/epancake"><img alt="github" className="icon" src="./004-circle.png"/></a>
+                <a className="contactLink" href="https://www.linkedin.com/in/emilypancake/"><img alt="linked in" className="icon" src="./003-symbol.png"/></a>
               </div>
               <p className="quote">"Put the fun back into function."</p>
             </Card>

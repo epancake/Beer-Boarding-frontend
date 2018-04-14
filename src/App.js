@@ -7,7 +7,6 @@ import Deleted from './components/Delete.js'
 import BrowseList from './components/BrowseList.js'
 import RandomQ from './components/Randomq.js'
 import Form from './components/Form.js'
-import Footer from './components/Footer.js'
 import Home from './components/Home.js'
 import { Button } from 'antd'
 import { Icon } from 'antd'
@@ -146,7 +145,6 @@ class App extends Component {
     event.preventDefault()
     const form = event.target;
     const data = new FormData(form);
-    const questions = this.state.questions
     const question = ({
       "id": data.get('qid'),
       "question_name": data.get('qname'),
@@ -206,7 +204,7 @@ class App extends Component {
             <div className='parallax'>
               <div className="bodyDiv">
                 <Route exact path="/" render={()=><Home/>}/>
-                <Route path="/browselist" render={()=><BrowseList key={456} solvers={this.state.solvers}
+                <Route path="/browselist" render={()=><BrowseList key={this.state.questions.length} solvers={this.state.solvers}
                   questions={this.state.questions}
                   onQuestionSolverSubmit={this.onQuestionSolverSubmit}
                   postName={this.postName}
@@ -224,7 +222,7 @@ class App extends Component {
                   questions_solvers={this.state.questions_solvers}
                   addSolvedBy={this.addSolvedBy}
                   onSubmitUpdate={this.onSubmitUpdate} />} />
-                <Route path="/add" render={()=><Form questions={this.state.questions} onSubmit={this.onSubmit}/>} />
+                <Route path="/add" render={()=><Form getId={this.getId} questions={this.state.questions} onSubmit={this.onSubmit}/>} />
                 <Route path="/success" render={()=><Success/>} />
                 <Route path="/deleted" render={()=><Deleted/>} />
             </div>

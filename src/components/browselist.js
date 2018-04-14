@@ -1,8 +1,5 @@
 import React from 'react'
 import QuestionCard from './QuestionCard.js'
-import Footer from './Footer.js'
-const location = 'https://beerboardingg70.firebaseapp.com/browselist'
-
 
 const BrowseList = (props) => {
 

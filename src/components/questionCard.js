@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import { Button, Icon, Select, Modal } from 'antd';
 
 const Option = Select.Option;
-const Highlight = require('react-highlight');
 const baseUrl = 'https://beerboardapi.herokuapp.com/'
-const homeUrl = 'https://beerboardingg70.firebaseapp.com'
 let deleteid;
-let objToDelete
 
 class QuestionCard extends Component {
 
@@ -45,7 +42,6 @@ class QuestionCard extends Component {
 
   componentDidMount () {
     this.getSolvedBy(this.props.question.id)
-    console.log("this.props.questions_solvers", this.props.questions_solvers)
   }
 
   toggleFunction = () => {
@@ -178,19 +174,16 @@ class QuestionCard extends Component {
     let url = baseUrl + 'solvedby/' + questionId;
     fetch(url)
       .then(res => res.json())
-      .then(res => {console.log('solvers', res); return res})
       .then(res => {
         this.setState({
           solvedBy: res.solvers
         })
       })
       .catch(error => console.error('Error:', error))
-      .then(response => console.log('Success:', response))
   }
 
   onSolverSubmit = (event) => {
     event.preventDefault()
-    const questions_solvers = this.props.questions_solvers
     const question_solver = ({
       "id": this.getId(this.props.questions_solvers),
       "questions_id": this.props.question.id,
@@ -213,11 +206,6 @@ class QuestionCard extends Component {
     let solvedByName = this.state.solvedBy.map(person => {
       return <span key={person.solver_name} className='solvedbyitem'><br/>{person.solver_name}</span>
     })
-
-    let solvedById = this.state.solvedBy.map(person => {
-      return <span key={person.id} className='solvedbyitem'><br/>{person.id}</span>
-    })
-
 
     return (
       <div className="card">
