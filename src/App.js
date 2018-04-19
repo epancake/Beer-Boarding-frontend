@@ -8,6 +8,7 @@ import BrowseList from './components/BrowseList.js'
 import RandomQ from './components/Randomq.js'
 import Form from './components/Form.js'
 import Home from './components/Home.js'
+import Rules from './components/Rules.js'
 import { Button } from 'antd'
 import { Icon } from 'antd'
 
@@ -225,6 +226,7 @@ class App extends Component {
                 <Route path="/add" render={()=><Form getId={this.getId} questions={this.state.questions} onSubmit={this.onSubmit}/>} />
                 <Route path="/success" render={()=><Success/>} />
                 <Route path="/deleted" render={()=><Deleted/>} />
+                <Route path="/rules" render={()=><Rules/>} />
             </div>
             </div>
 

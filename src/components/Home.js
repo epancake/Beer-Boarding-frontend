@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import Footer from './Footer.js'
 import { Card, Avatar } from 'antd';
+import { Link } from "react-router-dom";
+import { Button } from 'antd'
+import { Icon } from 'antd'
+
 const { Meta } = Card;
 
 class Home extends Component {
@@ -12,6 +16,9 @@ class Home extends Component {
           <h4>About Beer Boarding</h4>
           <p>Beer Boarding is a meetup that was co-founded in 2017 by Galvanize students, to provide an arena to practice technical interview questions. Students and alumni meet at the Galvanize Denver Platte Street campus to practice JavaScript, code under (just a little) pressure, learn from each other, and drink beer.</p>
           <p>This App was created to facilitate the Denver meetup, but can be used by anyone, anywhere, who wants to practice JavaScript.</p>
+          <Link to="/rules" className="rulesLink">
+              <Button id='navbtn' className="rulesBtn">Learn How to Play <Icon type="play-circle-o" /></Button>
+            </Link>
           <h4>Beer Boarding Co-Founders</h4>
           <div className="founders">
             <Card

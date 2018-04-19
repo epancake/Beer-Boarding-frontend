@@ -428,3 +428,41 @@ pre {
     grid-template-rows: auto auto auto;
   }
 }
+
+.rulesBtn {
+  align-self: center
+}
+
+.rulesLink {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 1.5rem;
+}
+
+.rules {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: .5rem 1.5rem;
+}
+
+.pageTitle {
+  padding-top: 1.5rem;
+}
+
+.subList {
+  padding-left: 2.5rem;
+}
+
+.anticon {
+  color: #00897b;
+  padding-right: .25rem;
+}
+
+.rules p, .rules li {
+  padding: .5rem;
+}
+
+.subList li {
+  padding: .25rem;
+}
