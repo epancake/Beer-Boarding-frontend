@@ -8,7 +8,7 @@ class Header extends Component {
       <div className="App-header">
         <div id="App-title">
         <h1><a href="/" className="mainHeading">Beer Boarding</a></h1>
-        <p id="tagline">JavaScript Whiteboard Practice for Champions</p>
+        <p id="tag">JavaScript Whiteboard Practice for Champions</p>
         </div>
         <img className='App-logo' src={logo} alt="Beers and boards equals friends"/>
 

@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-}
+  font-family: 'Crimson Text', serif;}
 
 .App-logo {
   height: 15vh;
@@ -13,13 +13,20 @@
 
 }
 
-h1, #tagline {
-  padding-left: 3vh;
+h1, #tag {
   align-self: left;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+#tag {
+  font-size: 1.5rem;
+  padding-left: 3.6vh;
+  margin-top: -.5rem;
 }
 
 h1 {
-  font-size: 3rem;
+  padding-left: 3vh;
+  font-size: 4rem;
   margin-bottom: 0;
 }
 
@@ -227,17 +234,6 @@ select {
   padding-bottom: 1rem;
 }
 
-
-.parallax {
-  background-image: url("./components/beer1_10.jpg");
-  height: 100vh;
-  background-attachment: fixed;
-  background-position: -6rem -1rem;
-  background-repeat: no-repeat;
-  background-size: auto;
-  /* overflow: hidden */
-}
-
 #navbtn {
   color: #00897b;
   width: 175px;
@@ -407,10 +403,11 @@ pre {
     height: auto;
   }
 
-  #tagline {
+  #tag {
     padding: 0;
     margin: 0;
     text-align: left;
+    font-size: 5rem;
   }
 
   aside, .cardbuttons {
@@ -455,7 +452,6 @@ pre {
 }
 
 .anticon {
-  color: #00897b;
   padding-right: .25rem;
 }
 
