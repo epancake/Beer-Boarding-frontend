@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import logo from './beerlogo.png';
+import logo from './logo.png';
+import { Link } from "react-router-dom";
+import { Button } from 'antd'
+import { Icon } from 'antd'
 
 class Header extends Component {
 
@@ -7,11 +10,13 @@ class Header extends Component {
     return (
       <div className="App-header">
         <div id="App-title">
-        <h1><a href="/" className="mainHeading">Beer Boarding</a></h1>
+        <div className="headerAndLogo">
+          <img className="logo" src={logo} alt="Beers and boards equals friends"/>
+          <h1><a href="/" className="mainHeading">Beer Boarding</a></h1>
+        </div>
         <p id="tag">JavaScript Whiteboard Practice for Champions</p>
         </div>
-        <img className='App-logo' src={logo} alt="Beers and boards equals friends"/>
-
+        <p><a href="/" className="aboutLink"><Icon type="info-circle" /></a></p>
       </div>
     );
   }

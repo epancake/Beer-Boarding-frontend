@@ -1,16 +1,25 @@
 .App {
   text-align: center;
-  font-family: 'Crimson Text', serif;}
+  font-family: 'Source Sans Pro', sans-serif;
+}
 
-.App-logo {
-  height: 15vh;
+.logo {
+  height: 7vh;
+  width: auto;
+  margin-bottom: 2vh
+}
+
+.headerAndLogo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 3vh;
 }
 
 #App-title {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 }
 
 h1, #tag {
@@ -25,23 +34,22 @@ h1, #tag {
 }
 
 h1 {
-  padding-left: 3vh;
+  padding-left: 1vh;
   font-size: 4rem;
   margin-bottom: 0;
 }
 
 h2 {
   color: #00897b;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
   align-self: flex-start;
-  text-decoration: underline;
   padding-bottom: .2rem;
 }
 
 .maincard {
   display: grid;
-  grid-template-columns: 5% 70% 20% 5%;
+  grid-template-columns: 5% 75% 20%;
   grid-template-rows: auto auto;
 }
 
@@ -64,7 +72,7 @@ h2 {
 }
 
 .cardbuttons button {
-  width: 7rem;
+  width: 7.5rem;
 }
 
 .cardtext {
@@ -80,14 +88,6 @@ h2 {
   justify-content: space-between;
 }
 
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -99,6 +99,8 @@ h2 {
   margin: 1rem;
   display: flex;
   flex-direction: column;
+  border-radius: 8pt;
+  background-color: azure
 }
 
 p {
@@ -109,14 +111,14 @@ button:hover, input[type="submit"]:hover {
   background: #00897b;
   color: #ffffff;
   margin: 1rem 1rem .5rem 1rem;
-  box-shadow: 2px 2px 5px 1px rgb(176, 182, 182)}
+  box-shadow: 1px 1px 1px 1px rgb(176, 182, 182)}
 
 button, input[type="submit"] {
   background: #00897b;
   color: #ffffff;
   padding: 10px 20px 10px 20px;
   margin: 1rem 1rem .5rem 1rem;
-  box-shadow: 6px 6px 5px 1px rgb(176, 182, 182)
+  box-shadow: 1px 3px 3px 1px rgb(176, 182, 182)
 }
 
 .addform {
@@ -201,7 +203,7 @@ input, textarea {
 
 .card-body p, .card-body div {
   text-align: left;
-  padding: .5rem
+  padding: .5rem .5rem .5rem 0;
 }
 
 strong {
@@ -236,12 +238,39 @@ select {
 
 #navbtn {
   color: #00897b;
-  width: 175px;
+  width: 205px;
+}
+
+.aboutBtn {
+  width: auto;
+  border: none;
+  box-shadow: none;
+  margin: -1rem 0 0 0;
+}
+
+
+
+.aboutBtn span {
+  font-size: 2rem;
+}
+
+.aboutLink {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around
+}
+
+.ant-btn {
+  height: 5vh
 }
 
 .ant-btn-primary {
   background-color: #00897b;
   border-color: white;
+}
+
+.ant-btn-primary:hover {
+  background-color: #00897b;
 }
 
 .ant-btn-danger {
@@ -259,7 +288,7 @@ select {
 
 .anticon-check-circle, .anticon-close-circle {
   color: #00897b;
-  font-size: 3rem;
+  font-size: 4rem;
   margin: 2rem;
 }
 
@@ -298,7 +327,7 @@ pre {
 
 .bbDescription {
   grid-row: 1;
-  font-size: 10pt;
+  font-size: 14pt;
   max-width: 800px;
   text-align: left;
   justify-self: center;
@@ -307,7 +336,7 @@ pre {
 
 .bbDescription h4 {
   font-weight: bold;
-  font-size: 12pt
+  font-size: 14pt
 }
 
 .founders {
@@ -338,6 +367,10 @@ pre {
 .icon {
   height: 1rem;
   margin-right: .5rem;
+}
+
+.anticon {
+  font-size: 1.2rem
 }
 
 .contactsDiv {
@@ -407,7 +440,6 @@ pre {
     padding: 0;
     margin: 0;
     text-align: left;
-    font-size: 5rem;
   }
 
   aside, .cardbuttons {
@@ -461,4 +493,13 @@ pre {
 
 .subList li {
   padding: .25rem;
+}
+
+p {
+  margin-bottom: 0
+}
+
+.anticon-info-circle {
+  font-size: 2rem;
+  color: #00897b;
 }

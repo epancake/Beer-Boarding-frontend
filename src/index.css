@@ -1,5 +1,17 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+p {
+  font-size: 14pt
+}
+
+div {
+  font-size: 14pt
+}
+
+span {
+  font-size: 14pt
 }
