@@ -211,6 +211,7 @@ class QuestionCard extends Component {
       <div className="card">
 
         <main className='maincard'>
+          
           <h2 className='cardname'>#{this.props.question.id + ': ' + this.props.question.question_name}</h2>
           <div className="card-body">
             <div className='cardtext'>
