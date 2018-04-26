@@ -4,7 +4,7 @@
 }
 
 .logo {
-  height: 7vh;
+  height: 6vh;
   width: auto;
   margin-bottom: 2vh
 }
@@ -34,7 +34,7 @@ h1, #tag {
 }
 
 #tag {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   padding-left: 3.6vh;
   margin-top: -.5rem;
   color: #fff
@@ -42,7 +42,7 @@ h1, #tag {
 
 h1 {
   padding-left: 1vh;
-  font-size: 4rem;
+  font-size: 3rem;
   margin-bottom: 0;
 }
 
@@ -502,11 +502,6 @@ color: #fff;
   #tag {
     font-size: 1rem;
     padding: 1vh 0 0 1vh;
-  }
-
-  .App-logo {
-    height: 3rem;
-    margin-top: 1rem;
   }
 
   .App-header {
