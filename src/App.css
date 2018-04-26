@@ -11,6 +11,12 @@
 
 .headerAndLogo {
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.headerStart {
+  display: flex;
   justify-content: space-between;
   align-items: center;
   padding-left: 3vh;
@@ -40,8 +46,7 @@ h1 {
   margin-bottom: 0;
 }
 
-h2 {
-  color: #ffffff;
+h2, h3 {
   font-size: 1.9rem;
   font-weight: bold;
   align-self: flex-start;
@@ -59,6 +64,7 @@ h2 {
   background-color: #7c7c7cb9;
   border-radius: 8pt 8pt 0 0;
   padding: .8rem 0 .4rem 0;
+  color: #ffffff;
 }
 
 .card-body {
@@ -90,6 +96,7 @@ h2 {
   height: 20vh;
   padding: 10px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 
@@ -420,14 +427,81 @@ pre {
   float: right;
 }
 
+aside, .cardbuttons {
+  grid-column: 3 / 4;
+  grid-row: 2/3
+}
+
+.ant-modal {
+  width: 95vw !important;
+}
+
+.maincard {
+  display: grid;
+  grid-template-columns: 5% 75% auto;
+  grid-template-rows: auto auto auto;
+}
+
+.rulesBtn {
+align-self: center
+}
+
+.rulesLink {
+display: flex;
+justify-content: space-around;
+padding-bottom: 1.5rem;
+}
+
+.rules {
+display: flex;
+flex-direction: column;
+text-align: left;
+padding: .5rem 1.5rem;
+}
+
+.pageTitle {
+padding-top: 1.5rem;
+}
+
+.subList {
+padding-left: 2.5rem;
+}
+
+.anticon {
+padding-right: .25rem;
+}
+
+.rules p, .rules li {
+padding: .5rem;
+}
+
+.subList li {
+padding: .25rem;
+}
+
+p {
+margin-bottom: 0
+}
+
+.anticon-info-circle {
+font-size: 2rem;
+color: #fff;
+}
+
 @media (max-width: 500px) {
+
   .founders {
     flex-direction: column;
   }
 
   h1 {
     font-size: 2rem;
-    padding: 0;
+    padding: 0 0 0 .5rem;
+  }
+
+  #tag {
+    font-size: 1rem;
+    padding: 1vh 0 0 1vh;
   }
 
   .App-logo {
@@ -440,70 +514,26 @@ pre {
     height: auto;
   }
 
-  #tag {
-    padding: 0;
-    margin: 0;
-    text-align: left;
+  .headerStart {
+    padding-left: 1vh
   }
 
-  aside, .cardbuttons {
+  .headerAndLogo {
+    padding-left: 0vh;
+    justify-content: flex-start;
+  }
+
+  .logo {
+    height: 4vh;
+  }
+
+  .cardbuttons {
+    padding-bottom: 2vh;
     grid-column: 2 / 3;
-    grid-row: 3/4
+    grid-row: 3 / 4
+
   }
 
-  .ant-modal {
-    width: 95vw !important;
-  }
-
-  .maincard {
-    display: grid;
-    grid-template-columns: 5% auto;
-    grid-template-rows: auto auto auto;
-  }
 }
 
-.rulesBtn {
-  align-self: center
-}
 
-.rulesLink {
-  display: flex;
-  justify-content: space-around;
-  padding-bottom: 1.5rem;
-}
-
-.rules {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  padding: .5rem 1.5rem;
-}
-
-.pageTitle {
-  padding-top: 1.5rem;
-}
-
-.subList {
-  padding-left: 2.5rem;
-}
-
-.anticon {
-  padding-right: .25rem;
-}
-
-.rules p, .rules li {
-  padding: .5rem;
-}
-
-.subList li {
-  padding: .25rem;
-}
-
-p {
-  margin-bottom: 0
-}
-
-.anticon-info-circle {
-  font-size: 2rem;
-  color: #fff;
-}

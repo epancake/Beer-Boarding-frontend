@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Icon, Select, Modal } from 'antd';
+import Notes from "./Notes"
 
 const Option = Select.Option;
 const baseUrl = 'https://beerboardapi.herokuapp.com/'
@@ -211,7 +212,7 @@ class QuestionCard extends Component {
       <div className="card">
 
         <main className='maincard'>
-          
+
           <h2 className='cardname'>#{this.props.question.id + ': ' + this.props.question.question_name}</h2>
           <div className="card-body">
             <div className='cardtext'>

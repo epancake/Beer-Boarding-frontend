@@ -4,14 +4,6 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-p {
-  font-size: 14pt
-}
-
-div {
-  font-size: 14pt
-}
-
-span {
+p, div, span, label {
   font-size: 14pt
 }

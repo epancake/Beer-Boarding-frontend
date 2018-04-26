@@ -10,13 +10,15 @@ class Header extends Component {
     return (
       <div className="App-header">
         <div id="App-title">
-        <div className="headerAndLogo">
-          <img className="logo" src={logo} alt="Beers and boards equals friends"/>
-          <h1><a href="/" className="mainHeading">Beer Boarding</a></h1>
+        <div className="headerStart">
+          <div className="headerAndLogo">
+           <img className="logo" src={logo} alt="Beers and boards equals friends"/>
+           <h1><a href="/" className="mainHeading">Beer Boarding</a></h1>
+          </div>
+          <p><a href="/" className="aboutLink"><Icon type="info-circle" /></a></p>
+        </div>
         </div>
         <p id="tag">JavaScript Whiteboard Practice for Champions</p>
-        </div>
-        <p><a href="/" className="aboutLink"><Icon type="info-circle" /></a></p>
       </div>
     );
   }

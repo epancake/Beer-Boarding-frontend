@@ -36,10 +36,10 @@ class Home extends Component {
                 <p className="foundertagline">Front-End Specialist</p>
                 <p className="foundertagline">Musician</p>
               </div>              
-              <a className="portfolioSite" href="https://jamesmann.tech/" target="_blank" ref="noopener noreferrer">jamesmann.tech</a>
+              <a className="portfolioSite" href="https://jamesmann.tech/" target="_blank" rel="noopener noreferrer">jamesmann.tech</a>
               <div className="contactsDiv">
-                <a className="contactLink" href="https://github.com/mrsaxmannjr" target="_blank" ref="noopener noreferrer"><img alt="Github" className="icon" src="./004-circle.png"/></a>
-                <a className="contactLink" href="https://www.linkedin.com/in/mrsaxmannjr/" target="_blank" ref="noopener noreferrer"><img alt="linked in" className="icon" src="./003-symbol.png"/></a>
+                <a className="contactLink" href="https://github.com/mrsaxmannjr" target="_blank" rel="noopener noreferrer"><img alt="Github" className="icon" src="./004-circle.png"/></a>
+                <a className="contactLink" href="https://www.linkedin.com/in/mrsaxmannjr/" target="_blank" rel="noopener noreferrer"><img alt="linked in" className="icon" src="./003-symbol.png"/></a>
               </div>
               <p className="quote">"You have to become one with the board."</p>
             </Card>
@@ -57,10 +57,10 @@ class Home extends Component {
               <p className="foundertagline">Front-End Specialist</p>
               <p className="foundertagline">Design Enthusiast</p>
               </div>
-              <a className="portfolioSite" href="https://emilypancake.com/" target="_blank" ref="noopener noreferrer">emilypancake.com</a>
+              <a className="portfolioSite" href="https://emilypancake.com/" target="_blank" rel="noopener noreferrer">emilypancake.com</a>
               <div className="contactsDiv">
-                <a className="contactLink" href="https://github.com/epancake" target="_blank" ref="noopener noreferrer"><img alt="github" className="icon" src="./004-circle.png"/></a>
-                <a className="contactLink" href="https://www.linkedin.com/in/emilypancake/" target="_blank" ref="noopener noreferrer"><img alt="linked in" className="icon" src="./003-symbol.png"/></a>
+                <a className="contactLink" href="https://github.com/epancake" target="_blank" rel="noopener noreferrer"><img alt="github" className="icon" src="./004-circle.png"/></a>
+                <a className="contactLink" href="https://www.linkedin.com/in/emilypancake/" target="_blank" rel="noopener noreferrer"><img alt="linked in" className="icon" src="./003-symbol.png"/></a>
               </div>
               <p className="quote">"Put the fun back into function."</p>
             </Card>
