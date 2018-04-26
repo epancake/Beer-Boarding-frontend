@@ -461,6 +461,7 @@ padding: .5rem 1.5rem;
 
 .pageTitle {
 padding-top: 1.5rem;
+color: #00897b;
 }
 
 .subList {
@@ -473,6 +474,10 @@ padding-right: .25rem;
 
 .rules p, .rules li {
 padding: .5rem;
+}
+
+.rules .anticon {
+  color: #00897b;
 }
 
 .subList li {
