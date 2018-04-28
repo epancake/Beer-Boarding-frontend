@@ -1,5 +1,7 @@
 import React from 'react'
 import { Icon } from 'antd'
+import Footer from './Footer.js'
+
 
 export default function Rules() {
   
@@ -23,11 +25,15 @@ export default function Rules() {
                         <li><Icon type="smile-o" className="subIcon"/>  Laugh at yourself, have fun, it’s not real life.</li>
                     </ul>
                 </li>
-                <li><Icon type="clock-circle" /> 2 minutes: Interviewers give feedback to the player. Focus on the positive.</li>
+                <li><Icon type="clock-circle" /> 2 minutes: Interviewers give feedback to the player. Focus on the positive. In the app, mark down that the person solved the question.</li>
 
             </ul>
         </section>
-
+        <section className="resources">
+           <h2 className="resourcesTitle">Resources</h2>
+            <a href="https://github.com/gSchool/problem-solving-curriculum/tree/master/Solve%20It" target="_blank" rel="noopener noreferrer">Galvanize whiteboarding curriculum Github repo (only accessible by gstudents)</a>
+        </section>
+        <Footer/>
       </div>
     )
 }

@@ -218,19 +218,20 @@ class QuestionCard extends Component {
             <div className='cardtext'>
               <div id='questionText'><strong>Question:</strong><br></br>{this.props.question.question.split("\n").map((i, index)=> {
             return <div key={Math.random()}>{i}</div>;})}</div>
-              <div id='solutionText' ><strong>Solution:</strong> <span onClick={this.toggleFunction} className='clicktext'>Click to show/hide.</span><br></br><span className={this.state.toggleClass?'hidden solutionLine':'solutionLine'}>{this.props.question.solution.split("/n").map((i, index) => {
+              <div id='solutionText' ><strong>Solution:</strong> <span onClick={this.toggleFunction} className='clicktext'>Click to show/hide <Icon type={this.state.toggleClass?'plus-square':'minus-square'} /></span><br></br><span className={this.state.toggleClass?'hidden solutionLine':'solutionLine'}>{this.props.question.solution.split("/n").map((i, index) => {
             return <pre key={Math.random()}>{i}</pre>;})}</span></div>
               <p id='submitText'><strong>Submitted by:</strong> {this.props.question.submitter}</p>
               <p id='solverText'><strong>Solved by:</strong>{solvedByName}</p>
+             
             </div>
           </div>
+
           <aside className="cardbuttons">
               <Button id='ant-btn-primary'onClick={this.openSubmitModal} type="primary">Solved! <Icon type="check-circle-o" /></Button>
               <Button id='delete' onClick={this.openDeleteModal} type="danger">Delete <Icon type="delete" /></Button>
               <Button id='update' onClick={this.openUpdateModal} type="primary">Update <Icon type="edit" /></Button>
-
           </aside>
-
+          <Notes/>
         </main>
 
 

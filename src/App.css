@@ -295,6 +295,7 @@ select {
 .add {
   touch-action: auto;
   width: 95%;
+  border-radius: 5pt
 }
 
 .anticon-check-circle, .anticon-close-circle {
@@ -459,7 +460,7 @@ text-align: left;
 padding: .5rem 1.5rem;
 }
 
-.pageTitle {
+.pageTitle, .resourcesTitle {
 padding-top: 1.5rem;
 color: #00897b;
 }
@@ -480,17 +481,60 @@ padding: .5rem;
   color: #00897b;
 }
 
+.resources {
+  padding: 0 0 1rem 0;
+}
+
+.copyright {
+  padding: 1rem 0;
+  margin-top: 1rem;
+  background-color: #00897b;
+  color: white
+}
+
 .subList li {
-padding: .25rem;
+  padding: .25rem;
 }
 
 p {
-margin-bottom: 0
+  margin-bottom: 0
 }
 
 .anticon-info-circle {
-font-size: 2rem;
-color: #fff;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.notesQuestion, .notesAnswer, .notesAnswers {
+  display: flex;
+}
+
+.notesQuestion {
+  padding: 0 0 0 1rem;
+  align-items: center;
+  padding-top: .5rem;
+}
+
+.notesAnswer {
+  width: 4rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 0 0 1rem;
+  margin-right: 1rem;
+}
+
+.checkboxLabel {
+  padding-left: .25rem;
+}
+
+input[type="checkbox"] {
+  margin-bottom: .35rem;
+}
+
+#notes {
+  grid-row: 3 / 4;
+  grid-column: 1 / 4;
+  padding: 1rem 0;
 }
 
 @media (max-width: 500px) {
@@ -532,6 +576,10 @@ color: #fff;
     grid-column: 2 / 3;
     grid-row: 3 / 4
 
+  }
+
+  .maincard {
+    grid-template-columns: 5% 90% 5%;
   }
 
 }
