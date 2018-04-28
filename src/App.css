@@ -245,6 +245,7 @@ select {
   color: rgb(14, 67, 227);
   text-decoration: underline;
   padding-bottom: 1rem;
+  cursor: pointer;
 }
 
 #navbtn {
@@ -521,6 +522,10 @@ p {
   justify-content: space-between;
   padding: 0 0 0 1rem;
   margin-right: 1rem;
+}
+
+.NoteExpander {
+  cursor: pointer;
 }
 
 .checkboxLabel {
