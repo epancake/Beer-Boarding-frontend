@@ -9,7 +9,7 @@ export default function Rules() {
       <div>
         <h2 className="pageTitle">How to Beer Board</h2>
         <section className="rules">
-            <p>Beer boarding starts promptly at 5pm. All members count off to make teams of 3 to 4 people. Each team takes a section of the whiteboard, and each team member gets to be the player for at least a 10 minutes, at the whiteboard.</p>
+            <p>Beer boarding starts promptly at 5:15pm. All members count off to make teams of up to 5 people. Each team takes a section of the whiteboard, and each team member gets to be the player for at least a 10 minutes, at the whiteboard.</p>
             <p>On each player’s 10 minute turn:</p>
             <ul>
                 <li><Icon type="clock-circle" /> 1 minute: “Interviewers” choose a question from the list on this app.</li>
