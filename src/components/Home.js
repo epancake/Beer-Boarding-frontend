@@ -71,7 +71,7 @@ class Home extends Component {
             >
               <Meta
                 title="Michael Schreier"
-                avatar={<Avatar src="./g70logo.png" />}
+                avatar={<Avatar className="g75" src="./g75.png" />}
               />
               <div className="foundertaglines">
               <p className="foundertagline">Full Stack Developer</p>

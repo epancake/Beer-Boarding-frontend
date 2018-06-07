@@ -377,6 +377,12 @@ pre {
   border-radius: 2%;
 }
 
+.g75 img {
+  width: 100%;
+  height: 80%;
+  padding-top: 3px;
+}
+
 .icon {
   height: 1rem;
   margin-right: .5rem;
