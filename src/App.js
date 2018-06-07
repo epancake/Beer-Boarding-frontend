@@ -5,7 +5,7 @@ import Header from './components/Header.js'
 import Success from './components/Success.js'
 import Deleted from './components/Delete.js'
 import BrowseList from './components/BrowseList.js'
-import RandomQ from './components/Randomq.js'
+import RandomQ from './components/RandomQ'
 import Form from './components/Form.js'
 import Home from './components/Home.js'
 import Rules from './components/Rules.js'
@@ -193,7 +193,7 @@ class App extends Component {
         <Header />
         <Router >
           <div>
-            <Link to="/browselist">
+            <Link to="/BrowseList">
               <Button id='navbtn' >Browse Questions <Icon type="bars" /></Button>
             </Link>
             <Link to="/random">
@@ -205,7 +205,7 @@ class App extends Component {
             <div className='parallax'>
               <div className="bodyDiv">
                 <Route exact path="/" render={()=><Home/>}/>
-                <Route path="/browselist" render={()=><BrowseList key={this.state.questions.length} solvers={this.state.solvers}
+                <Route path="/BrowseList" render={()=><BrowseList key={this.state.questions.length} solvers={this.state.solvers}
                   questions={this.state.questions}
                   onQuestionSolverSubmit={this.onQuestionSolverSubmit}
                   postName={this.postName}

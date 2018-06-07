@@ -1,5 +1,5 @@
 import React from 'react'
-import QuestionCard from './QuestionCard.js'
+import QuestionCard from './QuestionCard'
 
 const BrowseList = (props) => {
 

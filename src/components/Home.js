@@ -19,12 +19,12 @@ class Home extends Component {
           <Link to="/rules" className="rulesLink">
               <Button id='navbtn' className="rulesBtn">Learn How to Play <Icon type="play-circle-o" /></Button>
             </Link>
-          <h4>Beer Boarding Co-Founders</h4>
+          <h4>Beer Boarding Co-Founders and Champions of Leadership</h4>
           <div className="founders">
             <Card
               hoverable
               style={{ width: 250 }}
-              cover={<img alt="James" src="./JamesMannPhoto.png" />}
+              cover={<img alt="James" src="./JamesMannPhoto.jpeg" />}
               className="founderCard"
             >
               <Meta
@@ -46,7 +46,7 @@ class Home extends Component {
             <Card
               hoverable
               style={{ width: 250 }}
-              cover={<img alt="Emily Pancake" src="./PancakePhoto.png" />}
+              cover={<img alt="Emily Pancake" src="./PancakePhoto.jpeg" />}
             >
               <Meta
                 title="Emily Pancake"
@@ -63,6 +63,27 @@ class Home extends Component {
                 <a className="contactLink" href="https://www.linkedin.com/in/emilypancake/" target="_blank" rel="noopener noreferrer"><img alt="linked in" className="icon" src="./003-symbol.png"/></a>
               </div>
               <p className="quote">"Put the fun back into function."</p>
+            </Card>
+            <Card
+              hoverable
+              style={{ width: 250 }}
+              cover={<img alt="Michael Schreier" src="./MichaelPhoto.jpeg" />}
+            >
+              <Meta
+                title="Michael Schreier"
+                avatar={<Avatar src="./g70logo.png" />}
+              />
+              <div className="foundertaglines">
+              <p className="foundertagline">Full Stack Developer</p>
+              <p className="foundertagline">FEF Ninja</p>
+              <p className="foundertagline">Jazz Composer</p>
+              </div>
+              <a className="portfolioSite" href="http://www.kittenwar.com/" target="_blank" rel="noopener noreferrer">michaels.com (in prog)</a>
+              <div className="contactsDiv">
+                <a className="contactLink" href="https://github.com/mjschreier1" target="_blank" rel="noopener noreferrer"><img alt="github" className="icon" src="./004-circle.png"/></a>
+                <a className="contactLink" href="https://www.linkedin.com/in/mjschreier1/" target="_blank" rel="noopener noreferrer"><img alt="linked in" className="icon" src="./003-symbol.png"/></a>
+              </div>
+              <p className="quote">"In the end, everything returns true."</p>
             </Card>
           </div>
         </div>

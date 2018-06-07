@@ -15,14 +15,14 @@ describe('Fill out form', function () {
 describe('Delete Question', function () {
   it('delete a question', function () {
     cy.get('.ant-btn').eq(0).click()
-    cy.url().should('include', '/browselist')
+    cy.url().should('include', '/BrowseList')
     cy.get('.maincard').last().should("contain", "Fibonaccis Sequence")
     cy.get('.maincard').last().should("contain", "Fibonaccis Sequence")
     cy.get('.ant-btn-danger').last().click()
     cy.get('.finalQdelete').click()
     cy.get('#navbtn').click({force: true})
     cy.get('#navbtn').click({force: true})
-    cy.url().should('include', '/browselist')
+    cy.url().should('include', '/Browselist')
     cy.get('.maincard h2').last().should("not.have.value", "Fibonaccis Sequence")
   })
 })
